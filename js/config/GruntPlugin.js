@@ -1,8 +1,8 @@
-/*global dessert, troop, sntls, evan, grocer */
-troop.postpone(grocer, 'GruntPlugin', function () {
+/*global giant, giant, giant, giant, giant */
+giant.postpone(giant, 'GruntPlugin', function () {
     "use strict";
 
-    var base = troop.Base,
+    var base = giant.Base,
         self = base.extend();
 
     /**
@@ -10,27 +10,27 @@ troop.postpone(grocer, 'GruntPlugin', function () {
      * GruntPlugin instances may also be created via conversion from String,
      * treating the string as the name of the package.
      * @example
-     * grocer.GruntPlugin.create('grunt-contrib-copy')
-     * @name grocer.GruntPlugin.create
+     * giant.GruntPlugin.create('grunt-contrib-copy')
+     * @name giant.GruntPlugin.create
      * @function
      * @param {string} packageName Name of the NPM package associated with the grunt plugin.
-     * @returns {grocer.GruntPlugin}
+     * @returns {giant.GruntPlugin}
      * @see String#toGruntPlugin
      */
 
     /**
      * The GruntPlugin class represents a grunt plugin.
      * @class
-     * @extends troop.Base
+     * @extends giant.Base
      */
-    grocer.GruntPlugin = self
-        .addMethods(/** @lends grocer.GruntPlugin# */{
+    giant.GruntPlugin = self
+        .addMethods(/** @lends giant.GruntPlugin# */{
             /**
              * @param {string} packageName
              * @ignore
              */
             init: function (packageName) {
-                dessert.isString(packageName, "Invalid package name");
+                giant.isString(packageName, "Invalid package name");
 
                 /**
                  * Name of the NPM package associated with the grunt plugin.
@@ -41,10 +41,10 @@ troop.postpone(grocer, 'GruntPlugin', function () {
 
             /**
              * Loads the grunt plugin via the grunt API.
-             * @returns {grocer.GruntPlugin}
+             * @returns {giant.GruntPlugin}
              */
             loadPlugin: function () {
-                grocer.GruntProxy.create().loadNpmTasks(this.packageName);
+                giant.GruntProxy.create().loadNpmTasks(this.packageName);
                 return this;
             }
         });
@@ -53,15 +53,15 @@ troop.postpone(grocer, 'GruntPlugin', function () {
 (function () {
     "use strict";
 
-    troop.Properties.addProperties.call(
+    giant.Properties.addProperties.call(
         String.prototype,
         /** @lends String# */{
             /**
              * Converts string to GruntPlugin, treating the string as the name of an NPM package.
-             * @returns {grocer.AliasTask}
+             * @returns {giant.AliasTask}
              */
             toGruntPlugin: function () {
-                return grocer.GruntPlugin.create(this.valueOf());
+                return giant.GruntPlugin.create(this.valueOf());
             }
         },
         false, false, false

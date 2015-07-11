@@ -1,4 +1,4 @@
-/*global dessert, troop, sntls, grocer */
+/*global giant, giant, giant, giant */
 /*global module, test, expect, ok, equal, strictEqual, notStrictEqual, deepEqual, notDeepEqual, raises */
 (function () {
     "use strict";
@@ -6,19 +6,19 @@
     module("Css");
 
     test("Instantiation", function () {
-        var asset = grocer.Css.create('foo/bar');
+        var asset = giant.Css.create('foo/bar');
 
         equal(asset.assetName, 'foo/bar', "should set asset name");
         equal(asset.assetType, 'css', "should set asset type to css");
     });
 
     test("Asset surrogate", function () {
-        var asset = grocer.Asset.create('foo/bar', 'css');
-        ok(asset.isA(grocer.Css), "should return Css instance");
+        var asset = giant.Asset.create('foo/bar', 'css');
+        ok(asset.isA(giant.Css), "should return Css instance");
     });
 
     test("Serialization", function () {
-        var asset = grocer.Css.create('foo/bar');
+        var asset = giant.Css.create('foo/bar');
         equal(
             asset.toString(),
             '<link rel="stylesheet" href="foo/bar" />',

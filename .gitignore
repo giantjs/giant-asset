@@ -1,6 +1,6 @@
-/out/
+/*.tgz
 /.idea/
 /doc/
+/giant-asset.js
 /node_modules/
-grocer.js
-*.tgz
+/out/

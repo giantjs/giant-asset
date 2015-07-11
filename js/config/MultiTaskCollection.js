@@ -1,20 +1,20 @@
-/*global dessert, troop, sntls, evan, shoeshine, grocer */
-troop.postpone(grocer, 'MultiTaskCollection', function () {
+/*global giant, giant, giant, giant, giant, giant */
+giant.postpone(giant, 'MultiTaskCollection', function () {
     "use strict";
 
-    var base = sntls.Collection.of(grocer.MultiTask),
+    var base = giant.Collection.of(giant.MultiTask),
         self = base.extend();
 
     /**
      * Creates a MultiTaskCollection instance.
      * MultiTaskCollection instances may also be created via conversion from Array and Hash.
      * (In fact those are favorable to .create().)
-     * @name grocer.MultiTaskCollection.create
+     * @name giant.MultiTaskCollection.create
      * @function
      * @param {Object|Array} items
-     * @returns {grocer.MultiTaskCollection}
+     * @returns {giant.MultiTaskCollection}
      * @see Array#toMultiTaskCollection
-     * @see sntls.Hash#toMultiTaskCollection
+     * @see giant.Hash#toMultiTaskCollection
      */
 
     /**
@@ -22,11 +22,11 @@ troop.postpone(grocer, 'MultiTaskCollection', function () {
      * MultiTask instances. The main purpose of MultiTaskCollection is to provide conversion to
      * config-related objects and classes.
      * @class
-     * @extends sntls.Collection
-     * @extends grocer.MultiTask
+     * @extends giant.Collection
+     * @extends giant.MultiTask
      */
-    grocer.MultiTaskCollection = self
-        .addMethods(/** @lends grocer.MultiTaskCollection# */{
+    giant.MultiTaskCollection = self
+        .addMethods(/** @lends giant.MultiTaskCollection# */{
             /**
              * Generates a grunt config object for all tasks in the collection,
              * with targets optionally prefixed.
@@ -40,24 +40,24 @@ troop.postpone(grocer, 'MultiTaskCollection', function () {
             /**
              * Converts task collection to a GruntConfig instance.
              * @param {string} [targetPrefix] Optional prefix for all targets of all tasks.
-             * @returns {grocer.GruntConfig}
+             * @returns {giant.GruntConfig}
              */
             toGruntConfig: function (targetPrefix) {
-                return grocer.GruntConfig.create(this.getConfigNode(targetPrefix));
+                return giant.GruntConfig.create(this.getConfigNode(targetPrefix));
             }
         });
 });
 
-troop.amendPostponed(sntls, 'Hash', function () {
+giant.amendPostponed(giant, 'Hash', function () {
     "use strict";
 
-    sntls.Hash.addMethods(/** @lends sntls.Hash# */{
+    giant.Hash.addMethods(/** @lends giant.Hash# */{
         /**
          * Converts Hash to MultiTaskCollection. Hash items must be MultiTask instances.
-         * @returns {grocer.MultiTaskCollection}
+         * @returns {giant.MultiTaskCollection}
          */
         toMultiTaskCollection: function () {
-            return grocer.MultiTaskCollection.create(this.items);
+            return giant.MultiTaskCollection.create(this.items);
         }
     });
 });
@@ -65,30 +65,30 @@ troop.amendPostponed(sntls, 'Hash', function () {
 (function () {
     "use strict";
 
-    troop.Properties.addProperties.call(
+    giant.Properties.addProperties.call(
         Array.prototype,
         /** @lends Array# */{
             /**
              * Converts Array to MultiTaskCollection. Array items must be MultiTask instances.
-             * @returns {grocer.MultiTaskCollection}
+             * @returns {giant.MultiTaskCollection}
              */
             toMultiTaskCollection: function () {
-                return grocer.MultiTaskCollection.create(this);
+                return giant.MultiTaskCollection.create(this);
             }
         },
         false, false, false
     );
 
-    dessert.addTypes(/** @lends dessert */{
-        /** @param {grocer.MultiTaskCollection} expr */
+    giant.addTypes(/** @lends giant */{
+        /** @param {giant.MultiTaskCollection} expr */
         isMultiTaskCollection: function (expr) {
-            return grocer.MultiTaskCollection.isBaseOf(expr);
+            return giant.MultiTaskCollection.isBaseOf(expr);
         },
 
-        /** @param {grocer.MultiTaskCollection} expr */
+        /** @param {giant.MultiTaskCollection} expr */
         isMultiTaskCollectionOptional: function (expr) {
             return typeof expr === 'undefined' ||
-                   grocer.MultiTaskCollection.isBaseOf(expr);
+                   giant.MultiTaskCollection.isBaseOf(expr);
         }
     });
 }());

@@ -1,27 +1,27 @@
-/*global dessert, troop, sntls, evan, grocer */
-troop.postpone(grocer, 'GruntProxy', function () {
+/*global giant, giant, giant, giant, giant */
+giant.postpone(giant, 'GruntProxy', function () {
     "use strict";
 
-    var base = troop.Base,
+    var base = giant.Base,
         self = base.extend();
 
     /**
      * Creates or retrieves a GruntProxy instance.
-     * @name grocer.GruntProxy.create
+     * @name giant.GruntProxy.create
      * @function
-     * @returns {grocer.GruntProxy}
+     * @returns {giant.GruntProxy}
      */
 
     /**
      * The GruntProxy singleton provides a testable API to communicate with grunt.
      * @class
-     * @extends troop.Base
+     * @extends giant.Base
      */
-    grocer.GruntProxy = self
+    giant.GruntProxy = self
         .setInstanceMapper(function () {
             return 'singleton';
         })
-        .addMethods(/** @lends grocer.GruntProxy# */{
+        .addMethods(/** @lends giant.GruntProxy# */{
             /** @ignore */
             init: function () {
                 /**
@@ -33,12 +33,12 @@ troop.postpone(grocer, 'GruntProxy', function () {
 
             /**
              * Sets grunt object. This must be called at least once in order to use
-             * the config management part of grocer.
+             * the config management part of giant.
              * @param {object} grunt
-             * @returns {grocer.GruntProxy}
+             * @returns {giant.GruntProxy}
              */
             setGruntObject: function (grunt) {
-                dessert.isObject(grunt, "Invalid grunt object");
+                giant.isObject(grunt, "Invalid grunt object");
                 this.grunt = grunt;
                 return this;
             },
@@ -49,7 +49,7 @@ troop.postpone(grocer, 'GruntProxy', function () {
              * @returns {*}
              */
             configInit: function (config) {
-                dessert.assert(!!this.grunt, "Grunt reference not set");
+                giant.assert(!!this.grunt, "Grunt reference not set");
                 return this.grunt.config.init(config);
             },
 
@@ -59,7 +59,7 @@ troop.postpone(grocer, 'GruntProxy', function () {
              * @returns {*}
              */
             configMerge: function (config) {
-                dessert.assert(!!this.grunt, "Grunt reference not set");
+                giant.assert(!!this.grunt, "Grunt reference not set");
                 return this.grunt.config.merge(config);
             },
 
@@ -70,7 +70,7 @@ troop.postpone(grocer, 'GruntProxy', function () {
              * @returns {*}
              */
             configSet: function (propertyName, config) {
-                dessert.assert(!!this.grunt, "Grunt reference not set");
+                giant.assert(!!this.grunt, "Grunt reference not set");
                 return this.grunt.config.set(propertyName, config);
             },
 
@@ -87,7 +87,7 @@ troop.postpone(grocer, 'GruntProxy', function () {
              * @returns {*}
              */
             registerTask: function () {
-                dessert.assert(!!this.grunt, "Grunt reference not set");
+                giant.assert(!!this.grunt, "Grunt reference not set");
                 return this.grunt.registerTask.apply(this.grunt, arguments);
             },
 
@@ -96,7 +96,7 @@ troop.postpone(grocer, 'GruntProxy', function () {
              * @returns {*}
              */
             registerMultiTask: function () {
-                dessert.assert(!!this.grunt, "Grunt reference not set");
+                giant.assert(!!this.grunt, "Grunt reference not set");
                 return this.grunt.registerMultiTask.apply(this.grunt, arguments);
             },
 
@@ -105,7 +105,7 @@ troop.postpone(grocer, 'GruntProxy', function () {
              * returns {*}
              */
             loadTasks: function () {
-                dessert.assert(!!this.grunt, "Grunt reference not set");
+                giant.assert(!!this.grunt, "Grunt reference not set");
                 return this.grunt.loadTasks.apply(this.grunt, arguments);
             },
 
@@ -114,7 +114,7 @@ troop.postpone(grocer, 'GruntProxy', function () {
              * returns {*}
              */
             loadNpmTasks: function () {
-                dessert.assert(!!this.grunt, "Grunt reference not set");
+                giant.assert(!!this.grunt, "Grunt reference not set");
                 return this.grunt.loadNpmTasks.apply(this.grunt, arguments);
             }
         });

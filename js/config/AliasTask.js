@@ -1,8 +1,8 @@
-/*global dessert, troop, sntls, evan, shoeshine, grocer */
-troop.postpone(grocer, 'AliasTask', function () {
+/*global giant, giant, giant, giant, giant, giant */
+giant.postpone(giant, 'AliasTask', function () {
     "use strict";
 
-    var base = grocer.GruntTask,
+    var base = giant.GruntTask,
         self = base.extend(),
         slice = Array.prototype.slice;
 
@@ -10,10 +10,10 @@ troop.postpone(grocer, 'AliasTask', function () {
      * Creates an AliasTask instance.
      * AliasTask instances may also be created via conversion from String,
      * where the string is treated as the name of the task.
-     * @name grocer.AliasTask.create
+     * @name giant.AliasTask.create
      * @function
      * @param {string} taskName Name of alias task.
-     * @returns {grocer.AliasTask}
+     * @returns {giant.AliasTask}
      * @see String#toAliasTask
      */
 
@@ -21,14 +21,14 @@ troop.postpone(grocer, 'AliasTask', function () {
      * The AliasTask implements an 'alias' grunt task.
      * Alias grunt tasks group other tasks into a single task.
      * @class
-     * @extends grocer.GruntTask
+     * @extends giant.GruntTask
      * @see http://gruntjs.com/creating-tasks#alias-tasks
      */
-    grocer.AliasTask = self
+    giant.AliasTask = self
         .setInstanceMapper(function (taskName) {
             return taskName;
         })
-        .addMethods(/** @lends grocer.AliasTask# */{
+        .addMethods(/** @lends giant.AliasTask# */{
             /**
              * @param {string} taskName
              * @ignore
@@ -46,10 +46,10 @@ troop.postpone(grocer, 'AliasTask', function () {
             /**
              * Applies task by registering it via the grunt API.
              * @param {string} [description] Optional description of the task.
-             * @returns {grocer.AliasTask}
+             * @returns {giant.AliasTask}
              */
             applyTask: function (description) {
-                grocer.GruntProxy.create()
+                giant.GruntProxy.create()
                     .registerTask(this.taskName, description, this.subTasks);
                 return this;
             },
@@ -57,10 +57,10 @@ troop.postpone(grocer, 'AliasTask', function () {
             /**
              * Adds sub-task to the current alias task as the last sub-task.
              * @param {string} taskName Name of sub-task to be added.
-             * @returns {grocer.AliasTask}
+             * @returns {giant.AliasTask}
              */
             addSubTask: function (taskName) {
-                dessert.isString(taskName, "Invalid sub-task name");
+                giant.isString(taskName, "Invalid sub-task name");
                 this.subTasks.push(taskName);
                 return this;
             },
@@ -70,7 +70,7 @@ troop.postpone(grocer, 'AliasTask', function () {
              * or at the end when the specified sub-task does not exist.
              * @param {string} taskName
              * @param {string} [afterTaskName]
-             * @returns {grocer.AliasTask}
+             * @returns {giant.AliasTask}
              */
             addSubTaskAfter: function (taskName, afterTaskName) {
                 var subTasks = this.subTasks,
@@ -90,7 +90,7 @@ troop.postpone(grocer, 'AliasTask', function () {
              * or at the beginning when the specified sub-task does not exist.
              * @param {string} taskName
              * @param {string} [beforeTaskName]
-             * @returns {grocer.AliasTask}
+             * @returns {giant.AliasTask}
              */
             addSubTaskBefore: function (taskName, beforeTaskName) {
                 var subTasks = this.subTasks,
@@ -107,7 +107,7 @@ troop.postpone(grocer, 'AliasTask', function () {
 
             /**
              * Adds multiple sub-tasks. Each argument represents a sub-task.
-             * @returns {grocer.AliasTask}
+             * @returns {giant.AliasTask}
              */
             addSubTasks: function () {
                 this.subTasks = this.subTasks.concat(slice.call(arguments));
@@ -119,15 +119,15 @@ troop.postpone(grocer, 'AliasTask', function () {
 (function () {
     "use strict";
 
-    troop.Properties.addProperties.call(
+    giant.Properties.addProperties.call(
         String.prototype,
         /** @lends String# */{
             /**
              * Converts string to AliasTask, treating the string as task name.
-             * @returns {grocer.AliasTask}
+             * @returns {giant.AliasTask}
              */
             toAliasTask: function () {
-                var aliasTask = grocer.AliasTask.create(this.valueOf());
+                var aliasTask = giant.AliasTask.create(this.valueOf());
                 aliasTask.addSubTasks.apply(aliasTask, arguments);
                 return aliasTask;
             }

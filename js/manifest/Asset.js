@@ -1,36 +1,36 @@
-/*global dessert, troop, sntls, grocer */
-troop.postpone(grocer, 'Asset', function () {
+/*global giant, giant, giant, giant */
+giant.postpone(giant, 'Asset', function () {
     "use strict";
 
-    var base = troop.Base,
+    var base = giant.Base,
         self = base.extend();
 
     /**
      * Creates an Asset instance.
      * Assets may also be created via conversion from string.
      * TODO: Rename assetName to assetPath.
-     * @name grocer.Asset.create
+     * @name giant.Asset.create
      * @function
      * @param {string} assetName Asset name, usually a relative path.
      * @param {string} assetType Asset type, eg. 'css', 'js', etc.
-     * @returns {grocer.Asset}
+     * @returns {giant.Asset}
      * @see String#toAsset
      */
 
     /**
      * The Asset class represents a single asset (file) of the application.
      * @class
-     * @extends troop.Base
+     * @extends giant.Base
      */
-    grocer.Asset = self
-        .addMethods(/** @lends grocer.Asset# */{
+    giant.Asset = self
+        .addMethods(/** @lends giant.Asset# */{
             /**
              * @param {string} assetName
              * @param {string} assetType
              * @ignore
              */
             init: function (assetName, assetType) {
-                dessert
+                giant
                     .isString(assetName, "Invalid asset name")
                     .isString(assetType, "Invalid asset type");
 
@@ -50,7 +50,7 @@ troop.postpone(grocer, 'Asset', function () {
             /**
              * Adds prefix to the asset name.
              * @param {string} assetPrefix
-             * @returns {grocer.Asset}
+             * @returns {giant.Asset}
              */
             addPrefix: function (assetPrefix) {
                 this.assetName = assetPrefix + this.assetName;
@@ -86,7 +86,7 @@ troop.postpone(grocer, 'Asset', function () {
             /**
              * Serializes the asset to string.
              * Typically used for inclusion in a project file, eg. index.html.
-             * @name grocer.Asset#toString
+             * @name giant.Asset#toString
              * @function
              * @returns {string}
              */
@@ -96,16 +96,16 @@ troop.postpone(grocer, 'Asset', function () {
 (function () {
     "use strict";
 
-    troop.Properties.addProperties.call(
+    giant.Properties.addProperties.call(
         String.prototype,
         /** @lends String# */{
             /**
              * Converts string to Asset, interpreting the string as asset name.
              * @param {string} assetType
-             * @returns {grocer.Asset}
+             * @returns {giant.Asset}
              */
             toAsset: function (assetType) {
-                return grocer.Asset.create(this.valueOf(), assetType);
+                return giant.Asset.create(this.valueOf(), assetType);
             }
         },
         false, false, false

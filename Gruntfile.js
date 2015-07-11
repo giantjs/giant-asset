@@ -29,11 +29,7 @@ module.exports = function (grunt) {
             'js/config/jsTestDriver.conf'
         ],
 
-        globals: {
-            dessert: true,
-            troop  : true,
-            sntls  : true
-        }
+        globals: {}
     };
 
     // invoking common grunt process

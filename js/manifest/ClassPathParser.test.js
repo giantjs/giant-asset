@@ -1,4 +1,4 @@
-/*global dessert, troop, sntls, grocer */
+/*global giant, giant, giant, giant */
 /*global module, test, expect, ok, equal, strictEqual, notStrictEqual, deepEqual, notDeepEqual, raises */
 (function () {
     "use strict";
@@ -8,11 +8,11 @@
     test("Parsing class path", function () {
         var classPath;
 
-        classPath = grocer.ClassPathParser.parseClassPath('foo.bar');
-        ok(classPath.isA(sntls.Path), "should return Path instance");
+        classPath = giant.ClassPathParser.parseClassPath('foo.bar');
+        ok(classPath.isA(giant.Path), "should return Path instance");
         deepEqual(classPath.asArray, ['foo', 'bar'], "should set correct Path contents");
 
-        classPath = grocer.ClassPathParser.parseClassPath('foo[\'$bar\'].Baz');
+        classPath = giant.ClassPathParser.parseClassPath('foo[\'$bar\'].Baz');
         deepEqual(
             classPath.asArray,
             ['foo', '$bar', 'Baz'],
@@ -24,7 +24,7 @@
 
         deepEqual(
             classPathString.toPathFromClassPath(),
-            grocer.ClassPathParser.parseClassPath(classPathString),
+            giant.ClassPathParser.parseClassPath(classPathString),
             "should parse class path");
     });
 

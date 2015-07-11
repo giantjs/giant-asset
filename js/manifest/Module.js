@@ -1,19 +1,19 @@
-/*global dessert, troop, sntls, grocer */
-troop.postpone(grocer, 'Module', function () {
+/*global giant, giant, giant, giant */
+giant.postpone(giant, 'Module', function () {
     "use strict";
 
-    var base = troop.Base,
+    var base = giant.Base,
         self = base.extend();
 
     /**
      * Creates a Module instance.
      * Module instances may also be created via conversion from string. The string in this case is
      * interpreted as the name of the module.
-     * @name grocer.Module.create
+     * @name giant.Module.create
      * @function
      * @param {string} moduleName
      * @param {object} moduleNode
-     * @returns {grocer.Module}
+     * @returns {giant.Module}
      * @see String#toModule
      */
 
@@ -23,22 +23,22 @@ troop.postpone(grocer, 'Module', function () {
      * (Eg. a page class that needs to be instantiated before opening that page, assuming that
      * modules correspond to pages.)
      * @class
-     * @extends troop.Base
+     * @extends giant.Base
      */
-    grocer.Module = self
-        .addMethods(/** @lends grocer.Module# */{
+    giant.Module = self
+        .addMethods(/** @lends giant.Module# */{
             /**
              * @param {string} moduleName
              * @param {object} moduleNode
              * @ignore
              */
             init: function (moduleName, moduleNode) {
-                dessert
+                giant
                     .isString(moduleName, "Invalid module name")
                     .isObject(moduleNode, "Invalid module node");
 
-                /** @type {sntls.Tree} */
-                var moduleDescriptor = sntls.Tree.create(moduleNode),
+                /** @type {giant.Tree} */
+                var moduleDescriptor = giant.Tree.create(moduleNode),
                     classPath = moduleDescriptor.getNode('classPath'.toPath());
 
                 /**
@@ -50,7 +50,7 @@ troop.postpone(grocer, 'Module', function () {
                 /**
                  * Class path associated with the module. The class path identifies the module's
                  * main symbol (object, function, class, etc.) relative to the global object.
-                 * @type {sntls.Path}
+                 * @type {giant.Path}
                  */
                 this.classPath = classPath ?
                                  classPath.toPathFromClassPath() :
@@ -59,7 +59,7 @@ troop.postpone(grocer, 'Module', function () {
                 /**
                  * Collection of asset collections. Within a module, there's an asset collection associated
                  * with each available asset type.
-                 * @type {sntls.Collection}
+                 * @type {giant.Collection}
                  */
                 this.assetCollections = moduleDescriptor
                     .getNodeAsHash('assets'.toPath())
@@ -72,10 +72,10 @@ troop.postpone(grocer, 'Module', function () {
             /**
              * Fetches all assets in the module for the specified asset type.
              * @param {string} assetType
-             * @returns {grocer.AssetCollection}
+             * @returns {giant.AssetCollection}
              */
             getAssets: function (assetType) {
-                dessert.isString(assetType, "Invalid asset type");
+                giant.isString(assetType, "Invalid asset type");
                 return this.assetCollections.getItem(assetType);
             },
 
@@ -85,7 +85,7 @@ troop.postpone(grocer, 'Module', function () {
              * @returns {string[]}
              */
             getAssetNames: function (assetType) {
-                dessert.isString(assetType, "Invalid asset type");
+                giant.isString(assetType, "Invalid asset type");
                 var assets = this.assetCollections.getItem(assetType);
                 return assets ?
                        assets.getAssetNames() :
@@ -121,10 +121,10 @@ troop.postpone(grocer, 'Module', function () {
              * @example
              * 'foo'.toModule({hello: 'world'}).toAsset() // 'foo.js'.toAsset('js')
              * @param {string} assetType
-             * @returns {grocer.Asset}
+             * @returns {giant.Asset}
              */
             toAsset: function (assetType) {
-                dessert
+                giant
                     .isString(assetType, "Invalid asset type")
                     .assert(this.assetCollections.getItem(assetType), "Invalid assetType");
                 return (this.moduleName + '.' + assetType).toAsset(assetType);
@@ -135,15 +135,15 @@ troop.postpone(grocer, 'Module', function () {
 (function () {
     "use strict";
 
-    troop.Properties.addProperties.call(
+    giant.Properties.addProperties.call(
         String.prototype,
         /** @lends String# */{
             /**
              * @param {object} [moduleNode]
-             * @returns {grocer.Module}
+             * @returns {giant.Module}
              */
             toModule: function (moduleNode) {
-                return grocer.Module.create(this.valueOf(), moduleNode);
+                return giant.Module.create(this.valueOf(), moduleNode);
             }
         },
         false, false, false

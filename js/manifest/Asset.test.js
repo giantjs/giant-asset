@@ -1,4 +1,4 @@
-/*global dessert, troop, sntls, grocer */
+/*global giant, giant, giant, giant */
 /*global module, test, expect, ok, equal, strictEqual, notStrictEqual, deepEqual, notDeepEqual, raises */
 (function () {
     "use strict";
@@ -7,10 +7,10 @@
 
     test("Instantiation", function () {
         raises(function () {
-            grocer.Asset.create();
+            giant.Asset.create();
         }, "should raise exception on absent arguments");
 
-        var asset = grocer.Asset.create('foo/bar', 'baz');
+        var asset = giant.Asset.create('foo/bar', 'baz');
 
         equal(asset.assetName, 'foo/bar', "should set asset name");
         equal(asset.assetType, 'baz', "should set asset type");
@@ -18,7 +18,7 @@
 
     test("Conversion from string", function () {
         var asset = 'foo/bar'.toAsset('js');
-        ok(asset.isA(grocer.Asset), "should return Asset instance");
+        ok(asset.isA(giant.Asset), "should return Asset instance");
         equal(asset.assetName, 'foo/bar', "should set asset name");
         equal(asset.assetType, 'js', "should set asset type");
     });

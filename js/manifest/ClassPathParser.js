@@ -1,17 +1,17 @@
-/*global dessert, troop, sntls, grocer */
-troop.postpone(grocer, 'ClassPathParser', function () {
+/*global giant, giant, giant, giant */
+giant.postpone(giant, 'ClassPathParser', function () {
     "use strict";
 
-    var base = troop.Base,
+    var base = giant.Base,
         self = base.extend();
 
     /**
      * The ClassPathParser has the sole purpose of parsing class path string expressions.
      * @class
-     * @extends troop.Base
+     * @extends giant.Base
      */
-    grocer.ClassPathParser = self
-        .addConstants(/** @lends grocer.ClassPathParser */{
+    giant.ClassPathParser = self
+        .addConstants(/** @lends giant.ClassPathParser */{
             /**
              * @type {RegExp}
              * @constant
@@ -24,12 +24,12 @@ troop.postpone(grocer, 'ClassPathParser', function () {
              */
             RE_IDENTIFIER: /^[a-z][0-9a-z_$]+$/i
         })
-        .addMethods(/** @lends grocer.ClassPathParser */{
+        .addMethods(/** @lends giant.ClassPathParser */{
             /**
              * Parses class path. The class path is a path delimited by any character that is
              * not word character, numeric, underscore, or dollar sign.
              * @param {string} classPath
-             * @returns {sntls.Path}
+             * @returns {giant.Path}
              */
             parseClassPath: function (classPath) {
                 return classPath.split(this.RE_CLASS_PATH_DELIMITER).toPath();
@@ -37,11 +37,11 @@ troop.postpone(grocer, 'ClassPathParser', function () {
         });
 });
 
-troop.amendPostponed(sntls, 'Path', function () {
+giant.amendPostponed(giant, 'Path', function () {
     "use strict";
 
-    sntls.Path
-        .addMethods(/** @lends sntls.Path# */{
+    giant.Path
+        .addMethods(/** @lends giant.Path# */{
             /**
              * Converts Path to a class path string.
              * @returns {string}
@@ -50,7 +50,7 @@ troop.amendPostponed(sntls, 'Path', function () {
                 return this.asArray
                     .toCollection()
                     .mapValues(function (propertyName, index) {
-                        return !grocer.ClassPathParser.RE_IDENTIFIER.test(propertyName) ?
+                        return !giant.ClassPathParser.RE_IDENTIFIER.test(propertyName) ?
                                '["' + propertyName.replace('"', '\\"') + '"]' :
                                index > 0 ?
                                '.' + propertyName :
@@ -65,15 +65,15 @@ troop.amendPostponed(sntls, 'Path', function () {
 (function () {
     "use strict";
 
-    troop.Properties.addProperties.call(
+    giant.Properties.addProperties.call(
         String.prototype,
         /** @lends String# */{
             /**
              * Converts string to Path, treating the string as class path.
-             * @returns {sntls.Path}
+             * @returns {giant.Path}
              */
             toPathFromClassPath: function () {
-                return grocer.ClassPathParser.parseClassPath(this);
+                return giant.ClassPathParser.parseClassPath(this);
             }
         },
         false, false, false

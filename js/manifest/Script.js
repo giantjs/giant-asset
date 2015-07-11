@@ -1,8 +1,8 @@
-/*global dessert, troop, sntls, grocer */
-troop.postpone(grocer, 'Script', function () {
+/*global giant, giant, giant, giant */
+giant.postpone(giant, 'Script', function () {
     "use strict";
 
-    var base = grocer.Asset,
+    var base = giant.Asset,
         self = base.extend();
 
     /**
@@ -10,19 +10,19 @@ troop.postpone(grocer, 'Script', function () {
      * Script assets may also be created via conversion from string.
      * @example
      * var css = 'foo.js'.toAsset('js');
-     * @name grocer.Script.create
+     * @name giant.Script.create
      * @function
      * @param {string} assetPath
-     * @returns {grocer.Script}
+     * @returns {giant.Script}
      */
 
     /**
      * The Script class represents a JavaScript asset file.
      * @class
-     * @extends grocer.Asset
+     * @extends giant.Asset
      */
-    grocer.Script = self
-        .addMethods(/** @lends grocer.Script# */{
+    giant.Script = self
+        .addMethods(/** @lends giant.Script# */{
             /**
              * @param {string} assetPath
              * @ignore
@@ -41,11 +41,11 @@ troop.postpone(grocer, 'Script', function () {
         });
 });
 
-troop.amendPostponed(grocer, 'Asset', function () {
+giant.amendPostponed(giant, 'Asset', function () {
     "use strict";
 
-    grocer.Asset
-        .addSurrogate(grocer, 'Script', function (assetPath, assetType) {
+    giant.Asset
+        .addSurrogate(giant, 'Script', function (assetPath, assetType) {
             return assetType === 'js';
         });
 });

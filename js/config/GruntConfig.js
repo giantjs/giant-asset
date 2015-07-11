@@ -1,30 +1,30 @@
-/*global dessert, troop, sntls, evan, grocer */
-troop.postpone(grocer, 'GruntConfig', function () {
+/*global giant, giant, giant, giant, giant */
+giant.postpone(giant, 'GruntConfig', function () {
     "use strict";
 
-    var base = sntls.Tree,
+    var base = giant.Tree,
         self = base.extend(),
         slice = Array.prototype.slice;
 
     /**
      * Creates a GruntConfig instance.
-     * @name grocer.GruntConfig.create
+     * @name giant.GruntConfig.create
      * @function
      * @param {object} [items]
-     * @returns {grocer.GruntConfig}
+     * @returns {giant.GruntConfig}
      */
 
     /**
      * The GruntConfig class represents and manages grunt config objects, including adding tasks to,
      * applying, merging configs.
      * @class
-     * @extends sntls.Tree
+     * @extends giant.Tree
      */
-    grocer.GruntConfig = self
-        .addPrivateMethods(/** @lends grocer.GruntConfig# */{
+    giant.GruntConfig = self
+        .addPrivateMethods(/** @lends giant.GruntConfig# */{
             /**
              * Returns a dictionary of unique targets as task names associated with task names for each target.
-             * @returns {sntls.StringDictionary}
+             * @returns {giant.StringDictionary}
              * @private
              */
             _getAliasTaskAssociations: function () {
@@ -43,14 +43,14 @@ troop.postpone(grocer, 'GruntConfig', function () {
                     .reverse();
             }
         })
-        .addMethods(/** @lends grocer.GruntConfig# */{
+        .addMethods(/** @lends giant.GruntConfig# */{
             /**
              * Adds a (multi-)task to the config.
-             * @param {grocer.MultiTask} multiTask Task to be added to config.
-             * @returns {grocer.GruntConfig}
+             * @param {giant.MultiTask} multiTask Task to be added to config.
+             * @returns {giant.GruntConfig}
              */
             addMultiTask: function (multiTask) {
-                dessert.isMultiTask(multiTask, "Invalid multi task");
+                giant.isMultiTask(multiTask, "Invalid multi task");
 
                 this.toCollection()
                     .setItem(multiTask.taskName, multiTask.getConfigNode());
@@ -72,10 +72,10 @@ troop.postpone(grocer, 'GruntConfig', function () {
              * When the optional `wipe` argument is set, it also removes all other tasks leaving only those
              * being applied.
              * @param {boolean} [wipe] Whether to remove tasks not in current config.
-             * @returns {grocer.GruntConfig}
+             * @returns {giant.GruntConfig}
              */
             applyConfig: function (wipe) {
-                var gruntProxy = grocer.GruntProxy.create();
+                var gruntProxy = giant.GruntProxy.create();
                 if (wipe) {
                     gruntProxy.configInit(this.items);
                 } else {
@@ -96,10 +96,10 @@ troop.postpone(grocer, 'GruntConfig', function () {
 
             /**
              * Applies config by merging current config to previously applied config(s) via the grunt API.
-             * @returns {grocer.GruntConfig}
+             * @returns {giant.GruntConfig}
              */
             mergeConfig: function () {
-                var gruntProxy = grocer.GruntProxy.create();
+                var gruntProxy = giant.GruntProxy.create();
                 gruntProxy.configMerge(this.items);
                 return this;
             },
@@ -107,7 +107,7 @@ troop.postpone(grocer, 'GruntConfig', function () {
             /**
              * Returns a typed collection with alias tasks for the specified targets (as arguments),
              * or all targets (no arguments).
-             * @returns {grocer.GruntTaskCollection}
+             * @returns {giant.GruntTaskCollection}
              */
             getAliasTasksGroupedByTarget: function () {
                 var groupedTasks = this._getAliasTaskAssociations.apply(this, arguments);
@@ -124,20 +124,20 @@ troop.postpone(grocer, 'GruntConfig', function () {
                         }
 
                         return aliasTask;
-                    }, undefined, grocer.GruntTaskCollection);
+                    }, undefined, giant.GruntTaskCollection);
             },
 
             /**
              * Merges current config with remote config on the target level.
              * In case of conflict re. task/target combinations, the current config will win.
              * (Unless a suitable conflict resolver function is passed.)
-             * @param {grocer.GruntConfig} remoteConfig
+             * @param {giant.GruntConfig} remoteConfig
              * @param {function} [conflictResolver]
-             * @returns {grocer.GruntConfig}
-             * @see sntls.Collection#mergeWith
+             * @returns {giant.GruntConfig}
+             * @see giant.Collection#mergeWith
              */
             mergeWith: function (remoteConfig, conflictResolver) {
-                dessert.isGruntConfig(remoteConfig, "Invalid grunt config");
+                giant.isGruntConfig(remoteConfig, "Invalid grunt config");
 
                 var targetQuery = '|>|'.toQuery(),
 
@@ -164,16 +164,16 @@ troop.postpone(grocer, 'GruntConfig', function () {
 (function () {
     "use strict";
 
-    dessert.addTypes(/** @lends dessert */{
-        /** @param {grocer.GruntConfig} expr */
+    giant.addTypes(/** @lends giant */{
+        /** @param {giant.GruntConfig} expr */
         isGruntConfig: function (expr) {
-            return grocer.GruntConfig.isBaseOf(expr);
+            return giant.GruntConfig.isBaseOf(expr);
         },
 
-        /** @param {grocer.GruntConfig} expr */
+        /** @param {giant.GruntConfig} expr */
         isGruntConfigOptional: function (expr) {
             return typeof expr === 'undefined' ||
-                   grocer.GruntConfig.isBaseOf(expr);
+                   giant.GruntConfig.isBaseOf(expr);
         }
     });
 }());

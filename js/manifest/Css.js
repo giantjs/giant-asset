@@ -1,8 +1,8 @@
-/*global dessert, troop, sntls, grocer */
-troop.postpone(grocer, 'Css', function () {
+/*global giant, giant, giant, giant */
+giant.postpone(giant, 'Css', function () {
     "use strict";
 
-    var base = grocer.Asset,
+    var base = giant.Asset,
         self = base.extend();
 
     /**
@@ -10,19 +10,19 @@ troop.postpone(grocer, 'Css', function () {
      * Css assets may also be created via conversion from string.
      * @example
      * var css = 'foo.css'.toAsset('css');
-     * @name grocer.Css.create
+     * @name giant.Css.create
      * @function
      * @param {string} assetPath
-     * @returns {grocer.Css}
+     * @returns {giant.Css}
      */
 
     /**
      * The Css class represents a style sheet asset file.
      * @class
-     * @extends grocer.Asset
+     * @extends giant.Asset
      */
-    grocer.Css = self
-        .addMethods(/** @lends grocer.Css# */{
+    giant.Css = self
+        .addMethods(/** @lends giant.Css# */{
             /**
              * @param {string} assetPath
              * @ignore
@@ -41,11 +41,11 @@ troop.postpone(grocer, 'Css', function () {
         });
 });
 
-troop.amendPostponed(grocer, 'Asset', function () {
+giant.amendPostponed(giant, 'Asset', function () {
     "use strict";
 
-    grocer.Asset
-        .addSurrogate(grocer, 'Css', function (assetPath, assetType) {
+    giant.Asset
+        .addSurrogate(giant, 'Css', function (assetPath, assetType) {
             return assetType === 'css';
         });
 });

@@ -1,4 +1,4 @@
-/*global dessert, troop, sntls, grocer */
+/*global giant, giant, giant, giant */
 /*global module, test, expect, ok, equal, strictEqual, notStrictEqual, deepEqual, notDeepEqual, raises */
 (function () {
     "use strict";
@@ -7,14 +7,14 @@
 
     test("Instantiation", function () {
         raises(function () {
-            grocer.Module.create();
+            giant.Module.create();
         }, "should raise exception on absent arguments");
 
         raises(function () {
-            grocer.Module.create('foo', 'bar');
+            giant.Module.create('foo', 'bar');
         }, "should raise exception on invalid arguments");
 
-        var module = grocer.Module.create('foo', {
+        var module = giant.Module.create('foo', {
             classPath: 'foo["bar"].baz',
             assets   : {
                 js: ['hello.js', 'world.js']
@@ -23,10 +23,10 @@
 
         equal(module.moduleName, 'foo', "should set moduleName property");
 
-        ok(module.classPath.isA(sntls.Path), "initializes classPath as Path instance");
+        ok(module.classPath.isA(giant.Path), "initializes classPath as Path instance");
         ok(module.classPath.toString(), 'foo>bar>baz', "should set class path based on value in module node");
 
-        ok(module.assetCollections.isA(sntls.Collection), "should initialize collection of assets");
+        ok(module.assetCollections.isA(giant.Collection), "should initialize collection of assets");
         equal(module.assetCollections.getKeyCount(), 1, "should set 1 AssetCollection instance in collection");
     });
 
@@ -38,7 +38,7 @@
             }
         });
 
-        ok(module.isA(grocer.Module), "should return Module instance");
+        ok(module.isA(giant.Module), "should return Module instance");
         equal(module.moduleName, 'foo', "should set module name");
     });
 
@@ -51,7 +51,7 @@
             }),
             scripts = module.getAssets('js');
 
-        ok(scripts.isA(grocer.AssetCollection), "should return AssetCollection instance");
+        ok(scripts.isA(giant.AssetCollection), "should return AssetCollection instance");
         deepEqual(
             scripts,
             ['hello.js', 'world.js'].toAssetCollection('js'),
@@ -121,7 +121,7 @@
         }, "should raise exception on invalid asset type argument");
 
         result = module.toAsset('js');
-        ok(result.isA(grocer.Asset), "should return Asset instance");
+        ok(result.isA(giant.Asset), "should return Asset instance");
         equal(result.assetName, 'foo.js', "should set asset name");
         equal(result.assetType, 'js', "should set asset type");
     });

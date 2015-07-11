@@ -1,4 +1,4 @@
-/*global dessert, troop, sntls, grocer */
+/*global giant, giant, giant, giant */
 /*global module, test, expect, ok, equal, strictEqual, notStrictEqual, deepEqual, notDeepEqual, raises */
 (function () {
     "use strict";
@@ -7,17 +7,17 @@
 
     test("Instantiation", function () {
         raises(function () {
-            grocer.AssetCollection.create({});
+            giant.AssetCollection.create({});
         }, "should raise exception on invalid arguments");
     });
 
     test("Conversion from Array", function () {
         var assets = ['foo/bar', 'hello/world'].toAssetCollection('baz');
 
-        ok(assets.isA(grocer.AssetCollection), "should return AssetCollection instance");
+        ok(assets.isA(giant.AssetCollection), "should return AssetCollection instance");
         deepEqual(
             assets,
-            grocer.AssetCollection.create(['foo/bar'.toAsset('baz'), 'hello/world'.toAsset('baz')]),
+            giant.AssetCollection.create(['foo/bar'.toAsset('baz'), 'hello/world'.toAsset('baz')]),
             "should initialize instance identically as through constructor");
     });
 
@@ -28,10 +28,10 @@
             ].toHash(),
             assets = hash.toAssetCollection();
 
-        ok(assets.isA(grocer.AssetCollection), "should return AssetCollection instance");
+        ok(assets.isA(giant.AssetCollection), "should return AssetCollection instance");
         deepEqual(
             assets,
-            grocer.AssetCollection.create(['foo/bar'.toAsset('baz'), 'hello/world'.toAsset('baz')]),
+            giant.AssetCollection.create(['foo/bar'.toAsset('baz'), 'hello/world'.toAsset('baz')]),
             "should initialize instance identically as through constructor");
     });
 
@@ -46,7 +46,7 @@
         var assets = ['foo/bar.js', 'baz/bar.js', 'hello/world.js'].toAssetCollection('baz'),
             assetFileNames = assets.getFlatAssetFileNameLookup();
 
-        ok(assetFileNames.isA(sntls.Dictionary), "should return Dictionary instance");
+        ok(assetFileNames.isA(giant.Dictionary), "should return Dictionary instance");
         deepEqual(assetFileNames.items, {
             'foo/bar.js'    : 'bar0.js',
             'baz/bar.js'    : 'bar1.js',

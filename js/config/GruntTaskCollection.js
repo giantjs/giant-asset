@@ -1,39 +1,39 @@
-/*global dessert, troop, sntls, evan, shoeshine, grocer */
-troop.postpone(grocer, 'GruntTaskCollection', function () {
+/*global giant, giant, giant, giant, giant, giant */
+giant.postpone(giant, 'GruntTaskCollection', function () {
     "use strict";
 
     /**
      * Creates a GruntTaskCollection instance.
      * GruntTaskCollection instances may also be created via conversion from Array and Hash.
      * (In fact those are favorable to .create().)
-     * @name grocer.GruntTaskCollection.create
+     * @name giant.GruntTaskCollection.create
      * @function
      * @param {Object|Array} items
-     * @returns {grocer.GruntTaskCollection}
+     * @returns {giant.GruntTaskCollection}
      * @see Array#toGruntTaskCollection
-     * @see sntls.Hash#toGruntTaskCollection
+     * @see giant.Hash#toGruntTaskCollection
      */
 
     /**
      * The GruntTaskCollection class implements a typed collection for storing and managing
      * GruntTask instances.
      * @class
-     * @extends sntls.Collection
-     * @extends grocer.GruntTask
+     * @extends giant.Collection
+     * @extends giant.GruntTask
      */
-    grocer.GruntTaskCollection = sntls.Collection.of(grocer.GruntTask);
+    giant.GruntTaskCollection = giant.Collection.of(giant.GruntTask);
 });
 
-troop.amendPostponed(sntls, 'Hash', function () {
+giant.amendPostponed(giant, 'Hash', function () {
     "use strict";
 
-    sntls.Hash.addMethods(/** @lends sntls.Hash# */{
+    giant.Hash.addMethods(/** @lends giant.Hash# */{
         /**
          * Converts Hash to GruntTaskCollection. Hash items must be GruntTask instances.
-         * @returns {grocer.GruntTaskCollection}
+         * @returns {giant.GruntTaskCollection}
          */
         toGruntTaskCollection: function () {
-            return grocer.GruntTaskCollection.create(this.items);
+            return giant.GruntTaskCollection.create(this.items);
         }
     });
 });
@@ -41,30 +41,30 @@ troop.amendPostponed(sntls, 'Hash', function () {
 (function () {
     "use strict";
 
-    troop.Properties.addProperties.call(
+    giant.Properties.addProperties.call(
         Array.prototype,
         /** @lends Array# */{
             /**
              * Converts Array to GruntTaskCollection. Array items must be GruntTask instances.
-             * @returns {grocer.GruntTaskCollection}
+             * @returns {giant.GruntTaskCollection}
              */
             toGruntTaskCollection: function () {
-                return grocer.GruntTaskCollection.create(this);
+                return giant.GruntTaskCollection.create(this);
             }
         },
         false, false, false
     );
 
-    dessert.addTypes(/** @lends dessert */{
-        /** @param {grocer.GruntTaskCollection} expr */
+    giant.addTypes(/** @lends giant */{
+        /** @param {giant.GruntTaskCollection} expr */
         isGruntTaskCollection: function (expr) {
-            return grocer.GruntTaskCollection.isBaseOf(expr);
+            return giant.GruntTaskCollection.isBaseOf(expr);
         },
 
-        /** @param {grocer.GruntTaskCollection} expr */
+        /** @param {giant.GruntTaskCollection} expr */
         isGruntTaskCollectionOptional: function (expr) {
             return typeof expr === 'undefined' ||
-                   grocer.GruntTaskCollection.isBaseOf(expr);
+                   giant.GruntTaskCollection.isBaseOf(expr);
         }
     });
 }());

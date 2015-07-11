@@ -1,18 +1,18 @@
-/*global dessert, troop, sntls, evan, shoeshine, grocer */
-troop.postpone(grocer, 'GruntTask', function () {
+/*global giant, giant, giant, giant, giant, giant */
+giant.postpone(giant, 'GruntTask', function () {
     "use strict";
 
-    var base = troop.Base,
+    var base = giant.Base,
         self = base.extend();
 
     /**
      * Creates a GruntTask instance.
      * GruntTask instances may also be created via conversion from String,
      * where the string is treated as the name of the task.
-     * @name grocer.CustomTask.create
+     * @name giant.CustomTask.create
      * @function
      * @param {string} taskName Name of the task.
-     * @returns {grocer.GruntTask}
+     * @returns {giant.GruntTask}
      * @see String#toGruntTask
      */
 
@@ -20,18 +20,18 @@ troop.postpone(grocer, 'GruntTask', function () {
      * The GruntTask implements a basic grunt task.
      * Basic tasks allow the user to implement tasks with a custom task handler.
      * @class
-     * @extends troop.Base
+     * @extends giant.Base
      * @see http://gruntjs.com/creating-tasks#basic-tasks
      * @see http://gruntjs.com/creating-tasks#custom-tasks
      */
-    grocer.GruntTask = self
-        .addMethods(/** @lends grocer.GruntTask# */{
+    giant.GruntTask = self
+        .addMethods(/** @lends giant.GruntTask# */{
             /**
              * @param {string} taskName
              * @ignore
              */
             init: function (taskName) {
-                dessert.isString(taskName, "Invalid task name");
+                giant.isString(taskName, "Invalid task name");
 
                 /**
                  * Name of the grunt task.
@@ -49,10 +49,10 @@ troop.postpone(grocer, 'GruntTask', function () {
             /**
              * Applies task by registering it via the grunt API.
              * @param {string} [description]
-             * @returns {grocer.GruntTask}
+             * @returns {giant.GruntTask}
              */
             applyTask: function (description) {
-                grocer.GruntProxy.create()
+                giant.GruntProxy.create()
                     .registerTask(this.taskName, description, this.taskHandler);
                 return this;
             },
@@ -60,21 +60,21 @@ troop.postpone(grocer, 'GruntTask', function () {
             /**
              * Sets task handler. Overwrites previously set handler.
              * @param {function} taskHandler Function that implements the task.
-             * @returns {grocer.GruntTask}
+             * @returns {giant.GruntTask}
              */
             setTaskHandler: function (taskHandler) {
-                dessert.isFunction(taskHandler, "Invalid task handler");
+                giant.isFunction(taskHandler, "Invalid task handler");
                 this.taskHandler = taskHandler;
                 return this;
             },
 
             /**
              * Adds current task to a collection of tasks.
-             * @param {grocer.MultiTaskCollection} taskCollection Collection to add the task to.
-             * @returns {grocer.GruntTask}
+             * @param {giant.MultiTaskCollection} taskCollection Collection to add the task to.
+             * @returns {giant.GruntTask}
              */
             addToCollection: function (taskCollection) {
-                dessert.isGruntTaskCollection(taskCollection, "Invalid grunt task collection");
+                giant.isGruntTaskCollection(taskCollection, "Invalid grunt task collection");
                 taskCollection.setItem(this.taskName, this);
                 return this;
             }
@@ -84,15 +84,15 @@ troop.postpone(grocer, 'GruntTask', function () {
 (function () {
     "use strict";
 
-    troop.Properties.addProperties.call(
+    giant.Properties.addProperties.call(
         String.prototype,
         /** @lends String# */{
             /**
              * Converts string to GruntTask, treating the string as task name.
-             * @returns {grocer.GruntTask}
+             * @returns {giant.GruntTask}
              */
             toGruntTask: function () {
-                return grocer.GruntTask.create(this.valueOf());
+                return giant.GruntTask.create(this.valueOf());
             }
         },
         false, false, false

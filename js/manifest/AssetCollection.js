@@ -1,30 +1,30 @@
-/*global dessert, troop, sntls, grocer */
-troop.postpone(grocer, 'AssetCollection', function () {
+/*global giant, giant, giant, giant */
+giant.postpone(giant, 'AssetCollection', function () {
     "use strict";
 
-    var base = sntls.Collection.of(grocer.Asset),
+    var base = giant.Collection.of(giant.Asset),
         self = base.extend();
 
     /**
-     * @name grocer.AssetCollection.create
+     * @name giant.AssetCollection.create
      * @function
      * @param {Asset[]} items
-     * @returns {grocer.AssetCollection}
+     * @returns {giant.AssetCollection}
      */
 
     /**
      * The AssetCollection offers an API to perform uniform operations on a set of Asset instances.
      * @class
-     * @extends troop.Base
+     * @extends giant.Base
      */
-    grocer.AssetCollection = self
-        .addMethods(/** @lends grocer.AssetCollection# */{
+    giant.AssetCollection = self
+        .addMethods(/** @lends giant.AssetCollection# */{
             /**
              * @param {Asset[]} items
              * @ignore
              */
             init: function (items) {
-                dessert.isArray(items, "Invalid asset list");
+                giant.isArray(items, "Invalid asset list");
                 base.init.call(this, items);
             },
 
@@ -34,7 +34,7 @@ troop.postpone(grocer, 'AssetCollection', function () {
              */
             getAssetNames: function () {
                 return this
-                    .mapValues(function (/**grocer.Asset*/asset) {
+                    .mapValues(function (/**giant.Asset*/asset) {
                         return asset.assetName;
                     })
                     .items;
@@ -42,20 +42,20 @@ troop.postpone(grocer, 'AssetCollection', function () {
 
             /**
              * Retrieves a dictionary of asset paths associated with flattened asset file names.
-             * @returns {sntls.Dictionary}
+             * @returns {giant.Dictionary}
              */
             getFlatAssetFileNameLookup: function () {
                 var result = {},
 
                 // assets identified by their (unique) asset names
                     assetNameByAsset = this
-                        .mapKeys(function (/**grocer.Asset*/asset) {
+                        .mapKeys(function (/**giant.Asset*/asset) {
                             return asset.assetName;
                         }),
 
                 // asset name lookup by asset file names (with extension)
                     assetFileNameToAssetName = assetNameByAsset
-                        .mapValues(function (/**grocer.Asset*/asset) {
+                        .mapValues(function (/**giant.Asset*/asset) {
                             return asset.getAssetFileName();
                         })
                         .toStringDictionary()
@@ -63,7 +63,7 @@ troop.postpone(grocer, 'AssetCollection', function () {
 
                 // asset data lookup by (unique) asset names
                     assetNameToAssetNameParts = assetNameByAsset
-                        .mapValues(function (/**grocer.Asset*/asset, assetName) {
+                        .mapValues(function (/**giant.Asset*/asset, assetName) {
                             return {
                                 name: assetName,
                                 base: asset.getAssetBaseName(),
@@ -89,13 +89,13 @@ troop.postpone(grocer, 'AssetCollection', function () {
                         }
                     });
 
-                return sntls.Dictionary.create(result);
+                return giant.Dictionary.create(result);
             },
 
             /**
              * Serializes all assets in the collection.
              * @returns {string}
-             * @see grocer.Asset#toString
+             * @see giant.Asset#toString
              */
             toString: function () {
                 return this.items.join('\n');
@@ -103,17 +103,17 @@ troop.postpone(grocer, 'AssetCollection', function () {
         });
 });
 
-troop.amendPostponed(sntls, 'Hash', function () {
+giant.amendPostponed(giant, 'Hash', function () {
     "use strict";
 
-    sntls.Hash
-        .addMethods(/** @lends sntls.Hash# */{
+    giant.Hash
+        .addMethods(/** @lends giant.Hash# */{
             /**
              * Converts `Hash` instance with array items to `AssetCollection` instance.
-             * @returns {grocer.AssetCollection}
+             * @returns {giant.AssetCollection}
              */
             toAssetCollection: function () {
-                return grocer.AssetCollection.create(this.items);
+                return giant.AssetCollection.create(this.items);
             }
         });
 });
@@ -121,12 +121,12 @@ troop.amendPostponed(sntls, 'Hash', function () {
 (function () {
     "use strict";
 
-    troop.Properties.addProperties.call(
+    giant.Properties.addProperties.call(
         Array.prototype,
         /** @lends Array# */{
             /**
              * @param {string} assetType
-             * @returns {grocer.AssetCollection}
+             * @returns {giant.AssetCollection}
              */
             toAssetCollection: function (assetType) {
                 return this.toCollection()
