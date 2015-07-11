@@ -4,29 +4,29 @@ module.exports = function (grunt) {
 
     var params = {
         files: [
-            'js/namespace.js',
-            'js/manifest/ClassPathParser.js',
-            'js/manifest/Asset.js',
-            'js/manifest/Script.js',
-            'js/manifest/Css.js',
-            'js/manifest/AssetCollection.js',
-            'js/manifest/Module.js',
-            'js/manifest/Manifest.js',
-            'js/config/GruntProxy.js',
-            'js/config/GruntTask.js',
-            'js/config/GruntTaskCollection.js',
-            'js/config/AliasTask.js',
-            'js/config/MultiTask.js',
-            'js/config/MultiTaskCollection.js',
-            'js/config/TaskConfig.js',
-            'js/config/GruntConfig.js',
-            'js/config/GruntPlugin.js',
-            'js/exports.js'
+            'src/namespace.js',
+            'src/manifest/ClassPathParser.js',
+            'src/manifest/Asset.js',
+            'src/manifest/Script.js',
+            'src/manifest/Css.js',
+            'src/manifest/AssetCollection.js',
+            'src/manifest/Module.js',
+            'src/manifest/Manifest.js',
+            'src/config/GruntProxy.js',
+            'src/config/GruntTask.js',
+            'src/config/GruntTaskCollection.js',
+            'src/config/AliasTask.js',
+            'src/config/MultiTask.js',
+            'src/config/MultiTaskCollection.js',
+            'src/config/TaskConfig.js',
+            'src/config/GruntConfig.js',
+            'src/config/GruntPlugin.js',
+            'src/exports.js'
         ],
 
         test: [
-            'js/manifest/jsTestDriver.conf',
-            'js/config/jsTestDriver.conf'
+            'src/manifest/jsTestDriver.conf',
+            'src/config/jsTestDriver.conf'
         ],
 
         globals: {}
