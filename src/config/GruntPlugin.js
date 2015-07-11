@@ -1,4 +1,4 @@
-/*global giant, giant, giant, giant, giant */
+/*global giant */
 giant.postpone(giant, 'GruntPlugin', function () {
     "use strict";
 
