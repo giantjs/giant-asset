@@ -1,7 +1,7 @@
 {
     "name"           : "giant-asset",
     "version"        : "0.0.3",
-    "description"    : "Front end asset manager",
+    "description"    : "Asset management module for Giant",
     "keywords"       : [
         "asset",
         "asset file",
