@@ -4,13 +4,10 @@
     "description"    : "Asset management module for Giant",
     "keywords"       : [
         "asset",
-        "asset file",
-        "asset list",
         "manifest",
-        "script list",
+        "script",
         "grunt",
-        "task",
-        "task management"
+        "task"
     ],
     "author"         : "Dan Stocker <dan@kwaia.com>",
     "copyright"      : "Copyright (c) 2014-2015 Dan Stocker",
