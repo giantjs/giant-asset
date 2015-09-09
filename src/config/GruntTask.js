@@ -84,17 +84,13 @@ giant.postpone(giant, 'GruntTask', function () {
 (function () {
     "use strict";
 
-    giant.Properties.addProperties.call(
-        String.prototype,
-        /** @lends String# */{
-            /**
-             * Converts string to GruntTask, treating the string as task name.
-             * @returns {giant.GruntTask}
-             */
-            toGruntTask: function () {
-                return giant.GruntTask.create(this.valueOf());
-            }
-        },
-        false, false, false
-    );
+    giant.extendBuiltIn(String.prototype, /** @lends String# */{
+        /**
+         * Converts string to GruntTask, treating the string as task name.
+         * @returns {giant.GruntTask}
+         */
+        toGruntTask: function () {
+            return giant.GruntTask.create(this.valueOf());
+        }
+    });
 }());

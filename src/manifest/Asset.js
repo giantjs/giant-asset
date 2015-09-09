@@ -96,18 +96,14 @@ giant.postpone(giant, 'Asset', function () {
 (function () {
     "use strict";
 
-    giant.Properties.addProperties.call(
-        String.prototype,
-        /** @lends String# */{
-            /**
-             * Converts string to Asset, interpreting the string as asset name.
-             * @param {string} assetType
-             * @returns {giant.Asset}
-             */
-            toAsset: function (assetType) {
-                return giant.Asset.create(this.valueOf(), assetType);
-            }
-        },
-        false, false, false
-    );
+    giant.extendBuiltIn(String.prototype, /** @lends String# */{
+        /**
+         * Converts string to Asset, interpreting the string as asset name.
+         * @param {string} assetType
+         * @returns {giant.Asset}
+         */
+        toAsset: function (assetType) {
+            return giant.Asset.create(this.valueOf(), assetType);
+        }
+    });
 }());

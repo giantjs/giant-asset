@@ -121,19 +121,15 @@ giant.amendPostponed(giant, 'Hash', function () {
 (function () {
     "use strict";
 
-    giant.Properties.addProperties.call(
-        Array.prototype,
-        /** @lends Array# */{
-            /**
-             * @param {string} assetType
-             * @returns {giant.AssetCollection}
-             */
-            toAssetCollection: function (assetType) {
-                return this.toCollection()
-                    .callOnEachItem('toAsset', assetType)
-                    .toAssetCollection();
-            }
-        },
-        false, false, false
-    );
+    giant.extendBuiltIn(Array.prototype, /** @lends Array# */{
+        /**
+         * @param {string} assetType
+         * @returns {giant.AssetCollection}
+         */
+        toAssetCollection: function (assetType) {
+            return this.toCollection()
+                .callOnEachItem('toAsset', assetType)
+                .toAssetCollection();
+        }
+    });
 }());

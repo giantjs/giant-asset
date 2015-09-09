@@ -32,8 +32,8 @@ giant.postpone(giant, 'MultiTask', function () {
              */
             _getConfigNode: function () {
                 return typeof this.configNode === 'function' ?
-                       this.configNode() :
-                       this.configNode;
+                    this.configNode() :
+                    this.configNode;
             }
         })
         .addMethods(/** @lends giant.MultiTask# */{
@@ -165,20 +165,16 @@ giant.postpone(giant, 'MultiTask', function () {
 (function () {
     "use strict";
 
-    giant.Properties.addProperties.call(
-        String.prototype,
-        /** @lends String# */{
-            /**
-             * Converts string to MultiTask, treating the string as the plugin name.
-             * @param {object} [configNode] Optional task config.
-             * @returns {giant.MultiTask}
-             */
-            toMultiTask: function (configNode) {
-                return giant.MultiTask.create(this.valueOf(), configNode);
-            }
-        },
-        false, false, false
-    );
+    giant.extendBuiltIn(String.prototype, /** @lends String# */{
+        /**
+         * Converts string to MultiTask, treating the string as the plugin name.
+         * @param {object} [configNode] Optional task config.
+         * @returns {giant.MultiTask}
+         */
+        toMultiTask: function (configNode) {
+            return giant.MultiTask.create(this.valueOf(), configNode);
+        }
+    });
 
     giant.addTypes(/** @lends giant */{
         /** @param {giant.MultiTask} expr */
@@ -189,7 +185,7 @@ giant.postpone(giant, 'MultiTask', function () {
         /** @param {giant.MultiTask} expr */
         isMultiTaskOptional: function (expr) {
             return typeof expr === 'undefined' ||
-                   giant.MultiTask.isBaseOf(expr);
+                giant.MultiTask.isBaseOf(expr);
         }
     });
 }());

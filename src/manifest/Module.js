@@ -53,8 +53,8 @@ giant.postpone(giant, 'Module', function () {
                  * @type {giant.Path}
                  */
                 this.classPath = classPath ?
-                                 classPath.toPathFromClassPath() :
-                                 undefined;
+                    classPath.toPathFromClassPath() :
+                    undefined;
 
                 /**
                  * Collection of asset collections. Within a module, there's an asset collection associated
@@ -88,8 +88,8 @@ giant.postpone(giant, 'Module', function () {
                 giant.isString(assetType, "Invalid asset type");
                 var assets = this.assetCollections.getItem(assetType);
                 return assets ?
-                       assets.getAssetNames() :
-                       [];
+                    assets.getAssetNames() :
+                    [];
             },
 
             /**
@@ -135,17 +135,13 @@ giant.postpone(giant, 'Module', function () {
 (function () {
     "use strict";
 
-    giant.Properties.addProperties.call(
-        String.prototype,
-        /** @lends String# */{
-            /**
-             * @param {object} [moduleNode]
-             * @returns {giant.Module}
-             */
-            toModule: function (moduleNode) {
-                return giant.Module.create(this.valueOf(), moduleNode);
-            }
-        },
-        false, false, false
-    );
+    giant.extendBuiltIn(String.prototype, /** @lends String# */{
+        /**
+         * @param {object} [moduleNode]
+         * @returns {giant.Module}
+         */
+        toModule: function (moduleNode) {
+            return giant.Module.create(this.valueOf(), moduleNode);
+        }
+    });
 }());

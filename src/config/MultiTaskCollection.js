@@ -65,19 +65,15 @@ giant.amendPostponed(giant, 'Hash', function () {
 (function () {
     "use strict";
 
-    giant.Properties.addProperties.call(
-        Array.prototype,
-        /** @lends Array# */{
-            /**
-             * Converts Array to MultiTaskCollection. Array items must be MultiTask instances.
-             * @returns {giant.MultiTaskCollection}
-             */
-            toMultiTaskCollection: function () {
-                return giant.MultiTaskCollection.create(this);
-            }
-        },
-        false, false, false
-    );
+    giant.extendBuiltIn(Array.prototype, /** @lends Array# */{
+        /**
+         * Converts Array to MultiTaskCollection. Array items must be MultiTask instances.
+         * @returns {giant.MultiTaskCollection}
+         */
+        toMultiTaskCollection: function () {
+            return giant.MultiTaskCollection.create(this);
+        }
+    });
 
     giant.addTypes(/** @lends giant */{
         /** @param {giant.MultiTaskCollection} expr */
@@ -88,7 +84,7 @@ giant.amendPostponed(giant, 'Hash', function () {
         /** @param {giant.MultiTaskCollection} expr */
         isMultiTaskCollectionOptional: function (expr) {
             return typeof expr === 'undefined' ||
-                   giant.MultiTaskCollection.isBaseOf(expr);
+                giant.MultiTaskCollection.isBaseOf(expr);
         }
     });
 }());

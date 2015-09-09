@@ -41,19 +41,15 @@ giant.amendPostponed(giant, 'Hash', function () {
 (function () {
     "use strict";
 
-    giant.Properties.addProperties.call(
-        Array.prototype,
-        /** @lends Array# */{
-            /**
-             * Converts Array to GruntTaskCollection. Array items must be GruntTask instances.
-             * @returns {giant.GruntTaskCollection}
-             */
-            toGruntTaskCollection: function () {
-                return giant.GruntTaskCollection.create(this);
-            }
-        },
-        false, false, false
-    );
+    giant.extendBuiltIn(Array.prototype, /** @lends Array# */{
+        /**
+         * Converts Array to GruntTaskCollection. Array items must be GruntTask instances.
+         * @returns {giant.GruntTaskCollection}
+         */
+        toGruntTaskCollection: function () {
+            return giant.GruntTaskCollection.create(this);
+        }
+    });
 
     giant.addTypes(/** @lends giant */{
         /** @param {giant.GruntTaskCollection} expr */
@@ -64,7 +60,7 @@ giant.amendPostponed(giant, 'Hash', function () {
         /** @param {giant.GruntTaskCollection} expr */
         isGruntTaskCollectionOptional: function (expr) {
             return typeof expr === 'undefined' ||
-                   giant.GruntTaskCollection.isBaseOf(expr);
+                giant.GruntTaskCollection.isBaseOf(expr);
         }
     });
 }());

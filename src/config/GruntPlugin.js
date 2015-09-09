@@ -53,17 +53,13 @@ giant.postpone(giant, 'GruntPlugin', function () {
 (function () {
     "use strict";
 
-    giant.Properties.addProperties.call(
-        String.prototype,
-        /** @lends String# */{
-            /**
-             * Converts string to GruntPlugin, treating the string as the name of an NPM package.
-             * @returns {giant.AliasTask}
-             */
-            toGruntPlugin: function () {
-                return giant.GruntPlugin.create(this.valueOf());
-            }
-        },
-        false, false, false
-    );
+    giant.extendBuiltIn(String.prototype, /** @lends String# */{
+        /**
+         * Converts string to GruntPlugin, treating the string as the name of an NPM package.
+         * @returns {giant.AliasTask}
+         */
+        toGruntPlugin: function () {
+            return giant.GruntPlugin.create(this.valueOf());
+        }
+    });
 }());

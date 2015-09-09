@@ -51,10 +51,10 @@ giant.amendPostponed(giant, 'Path', function () {
                     .toCollection()
                     .mapValues(function (propertyName, index) {
                         return !giant.ClassPathParser.RE_IDENTIFIER.test(propertyName) ?
-                               '["' + propertyName.replace('"', '\\"') + '"]' :
-                               index > 0 ?
-                               '.' + propertyName :
-                               propertyName;
+                            '["' + propertyName.replace('"', '\\"') + '"]' :
+                            index > 0 ?
+                                '.' + propertyName :
+                                propertyName;
                     })
                     .items
                     .join('');
@@ -65,17 +65,13 @@ giant.amendPostponed(giant, 'Path', function () {
 (function () {
     "use strict";
 
-    giant.Properties.addProperties.call(
-        String.prototype,
-        /** @lends String# */{
-            /**
-             * Converts string to Path, treating the string as class path.
-             * @returns {giant.Path}
-             */
-            toPathFromClassPath: function () {
-                return giant.ClassPathParser.parseClassPath(this);
-            }
-        },
-        false, false, false
-    );
+    giant.extendBuiltIn(String.prototype, /** @lends String# */{
+        /**
+         * Converts string to Path, treating the string as class path.
+         * @returns {giant.Path}
+         */
+        toPathFromClassPath: function () {
+            return giant.ClassPathParser.parseClassPath(this);
+        }
+    });
 }());

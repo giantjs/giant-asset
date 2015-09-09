@@ -119,19 +119,15 @@ giant.postpone(giant, 'AliasTask', function () {
 (function () {
     "use strict";
 
-    giant.Properties.addProperties.call(
-        String.prototype,
-        /** @lends String# */{
-            /**
-             * Converts string to AliasTask, treating the string as task name.
-             * @returns {giant.AliasTask}
-             */
-            toAliasTask: function () {
-                var aliasTask = giant.AliasTask.create(this.valueOf());
-                aliasTask.addSubTasks.apply(aliasTask, arguments);
-                return aliasTask;
-            }
-        },
-        false, false, false
-    );
+    giant.extendBuiltIn(String.prototype, /** @lends String# */{
+        /**
+         * Converts string to AliasTask, treating the string as task name.
+         * @returns {giant.AliasTask}
+         */
+        toAliasTask: function () {
+            var aliasTask = giant.AliasTask.create(this.valueOf());
+            aliasTask.addSubTasks.apply(aliasTask, arguments);
+            return aliasTask;
+        }
+    });
 }());
