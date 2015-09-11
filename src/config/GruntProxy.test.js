@@ -24,11 +24,11 @@
         var gruntProxy = giant.GruntProxy.create(),
             gruntObject = {};
 
-        raises(function () {
+        throws(function () {
             gruntProxy.setGruntObject();
         }, "should raise exception on missing argument");
 
-        raises(function () {
+        throws(function () {
             gruntProxy.setGruntObject('foo');
         }, "should raise exception on invalid argument");
 

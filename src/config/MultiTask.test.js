@@ -5,7 +5,7 @@
     module("MultiTask");
 
     test("Instantiation with object", function () {
-        raises(function () {
+        throws(function () {
             giant.MultiTask.create('foo', 'bar');
         }, "should raise exception on invalid arguments");
 
@@ -123,7 +123,7 @@
             }
         });
 
-        raises(function () {
+        throws(function () {
             task.getConfigNode(4);
         }, "should raise exception on invalid argument");
 
@@ -170,11 +170,11 @@
             }),
             config = giant.GruntConfig.create();
 
-        raises(function () {
+        throws(function () {
             task.addToConfig();
         }, "should raise exception on missing argument");
 
-        raises(function () {
+        throws(function () {
             task.addToConfig('foo');
         }, "should raise exception on invalid argument");
 
@@ -193,11 +193,11 @@
         var task = 'foo'.toMultiTask(),
             collection = giant.MultiTaskCollection.create();
 
-        raises(function () {
+        throws(function () {
             task.addToCollection();
         }, "should raise exception on missing argument");
 
-        raises(function () {
+        throws(function () {
             task.addToCollection('foo');
         }, "should raise exception on invalid collection argument");
 

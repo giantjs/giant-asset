@@ -11,11 +11,11 @@
             }),
             taskConfigNode = {};
 
-        raises(function () {
+        throws(function () {
             config.addMultiTask();
         }, "should raise exception on missing arguments");
 
-        raises(function () {
+        throws(function () {
             config.addMultiTask('foo');
         }, "should raise exception on invalid arguments");
 

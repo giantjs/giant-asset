@@ -26,11 +26,11 @@
     };
 
     test("Instantiation", function () {
-        raises(function () {
+        throws(function () {
             giant.Manifest.create();
         }, "should raise exception on absent arguments");
 
-        raises(function () {
+        throws(function () {
             giant.Manifest.create('foo');
         }, "should raise exception on invalid arguments");
 
@@ -44,7 +44,7 @@
         var manifest = giant.Manifest.create(manifestNode),
             module;
 
-        raises(function () {
+        throws(function () {
             manifest.getModule();
         }, "should raise exception on missing arguments");
 

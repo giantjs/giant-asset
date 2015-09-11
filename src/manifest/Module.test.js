@@ -5,11 +5,11 @@
     module("Module");
 
     test("Instantiation", function () {
-        raises(function () {
+        throws(function () {
             giant.Module.create();
         }, "should raise exception on absent arguments");
 
-        raises(function () {
+        throws(function () {
             giant.Module.create('foo', 'bar');
         }, "should raise exception on invalid arguments");
 
@@ -66,7 +66,7 @@
             }),
             scriptList;
 
-        raises(function () {
+        throws(function () {
             scriptList.getAssetNames();
         }, "should raise exception on missing arguments");
 
@@ -107,15 +107,15 @@
         }),
             result;
 
-        raises(function () {
+        throws(function () {
             module.toAsset();
         }, "should raise exception on missing argument");
 
-        raises(function () {
+        throws(function () {
             module.toAsset('4');
         }, "should raise exception on invalid argument");
 
-        raises(function () {
+        throws(function () {
             module.toAsset('css');
         }, "should raise exception on invalid asset type argument");
 

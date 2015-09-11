@@ -5,7 +5,7 @@
     module("GruntTask");
 
     test("Instantiation", function () {
-        raises(function () {
+        throws(function () {
             giant.GruntTask.create();
         }, "should raise exception on missing arguments");
 
@@ -50,7 +50,7 @@
         function taskHandler() {
         }
 
-        raises(function () {
+        throws(function () {
             task.setTaskHandler('foo');
         }, "should raise exception on invalid argument");
 
@@ -64,11 +64,11 @@
         var task = 'foo'.toGruntTask(),
             collection = giant.GruntTaskCollection.create();
 
-        raises(function () {
+        throws(function () {
             task.addToCollection();
         }, "should raise exception on missing argument");
 
-        raises(function () {
+        throws(function () {
             task.addToCollection('foo');
         }, "should raise exception on invalid collection argument");
 

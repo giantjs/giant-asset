@@ -5,7 +5,7 @@
     module("AssetCollection");
 
     test("Instantiation", function () {
-        raises(function () {
+        throws(function () {
             giant.AssetCollection.create({});
         }, "should raise exception on invalid arguments");
     });

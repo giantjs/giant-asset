@@ -5,7 +5,7 @@
     module("Asset");
 
     test("Instantiation", function () {
-        raises(function () {
+        throws(function () {
             giant.Asset.create();
         }, "should raise exception on absent arguments");
 

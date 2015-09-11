@@ -5,7 +5,7 @@
     module("GruntPlugin");
 
     test("Instantiation", function () {
-        raises(function () {
+        throws(function () {
             giant.GruntPlugin.create();
         }, "should raise exception on missing arguments");
 
