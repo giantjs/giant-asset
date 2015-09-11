@@ -9,7 +9,7 @@ giant.postpone(giant, 'GruntTask', function () {
      * Creates a GruntTask instance.
      * GruntTask instances may also be created via conversion from String,
      * where the string is treated as the name of the task.
-     * @name giant.CustomTask.create
+     * @name giant.GruntTask.create
      * @function
      * @param {string} taskName Name of the task.
      * @returns {giant.GruntTask}
