@@ -2,36 +2,47 @@
 module.exports = function (grunt) {
     "use strict";
 
-    var params = {
-        files: [
-            'src/namespace.js',
-            'src/manifest/ClassPathParser.js',
-            'src/manifest/Asset.js',
-            'src/manifest/Script.js',
-            'src/manifest/Css.js',
-            'src/manifest/AssetCollection.js',
-            'src/manifest/Module.js',
-            'src/manifest/Manifest.js',
-            'src/config/GruntProxy.js',
-            'src/config/GruntTask.js',
-            'src/config/GruntTaskCollection.js',
-            'src/config/AliasTask.js',
-            'src/config/MultiTask.js',
-            'src/config/MultiTaskCollection.js',
-            'src/config/TaskConfig.js',
-            'src/config/GruntConfig.js',
-            'src/config/GruntPlugin.js',
-            'src/exports.js'
-        ],
+    var grocer = require('grocer'),
+        packageNode = require('./package.json'),
+        manifestNode = require('./manifest.json'),
+        manifest = grocer.Manifest.create(manifestNode),
+        multiTasks = [].toMultiTaskCollection(),
+        gruntTasks = [].toGruntTaskCollection();
 
-        test: [
-            'src/manifest/jsTestDriver.conf',
-            'src/config/jsTestDriver.conf'
-        ],
+    grocer.GruntProxy.create()
+        .setGruntObject(grunt);
 
-        globals: {}
-    };
+    'concat'
+        .toMultiTask({
+            'default': {
+                src : manifest.getAssets('js')
+                    .getAssetNames(),
+                dest: 'lib/' + packageNode.name + '.js'
+            }
+        })
+        .setPackageName('grunt-contrib-concat')
+        .addToCollection(multiTasks);
 
-    // invoking common grunt process
-    require('common-gruntfile')(grunt, params);
+    'karma'
+        .toMultiTask({
+            'default': {
+                configFile: 'karma.conf.js',
+                singleRun : true
+            }
+        })
+        .setPackageName('grunt-karma')
+        .addToCollection(multiTasks);
+
+    'build'
+        .toAliasTask()
+        .addSubTasks('karma', 'concat')
+        .addToCollection(gruntTasks);
+
+    // registering tasks
+    multiTasks.toGruntConfig()
+        .applyConfig()
+        .getAliasTasksGroupedByTarget()
+        .mergeWith(multiTasks.toGruntTaskCollection())
+        .mergeWith(gruntTasks)
+        .applyTask();
 };

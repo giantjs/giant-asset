@@ -1,0 +1,26 @@
+{
+  "main": {
+    "assets": {
+      "js": [
+        "src/namespace.js",
+        "src/manifest/ClassPathParser.def.js",
+        "src/manifest/Asset.def.js",
+        "src/manifest/Script.def.js",
+        "src/manifest/Css.def.js",
+        "src/manifest/AssetCollection.def.js",
+        "src/manifest/Module.def.js",
+        "src/manifest/Manifest.def.js",
+        "src/config/GruntProxy.def.js",
+        "src/config/GruntTask.def.js",
+        "src/config/GruntTaskCollection.def.js",
+        "src/config/AliasTask.def.js",
+        "src/config/MultiTask.def.js",
+        "src/config/MultiTaskCollection.def.js",
+        "src/config/TaskConfig.def.js",
+        "src/config/GruntConfig.def.js",
+        "src/config/GruntPlugin.def.js",
+        "src/exports.js"
+      ]
+    }
+  }
+}
