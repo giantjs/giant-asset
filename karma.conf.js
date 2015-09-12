@@ -16,27 +16,11 @@ module.exports = function (config) {
             'node_modules/giant-oop/giant-oop.js',
             'config/giant-oop-test.config.js',
             'node_modules/q/q.js',
-            'node_modules/giant-utils/giant-utils.js',
             'node_modules/giant-data/giant-data.js',
 
             'src/namespace.js',
 
-            'src/config/AliasTask.js',
-            'src/config/GruntConfig.js',
-            'src/config/GruntPlugin.js',
-            'src/config/GruntProxy.js',
-            'src/config/GruntTask.js',
-            'src/config/GruntTaskCollection.js',
-            'src/config/MultiTask.js',
-            'src/config/MultiTaskCollection.js',
-            'src/manifest/Asset.js',
-            'src/manifest/AssetCollection.js',
-            'src/manifest/ClassPathParser.js',
-            'src/manifest/Css.js',
-            'src/manifest/Manifest.js',
-            'src/manifest/Module.js',
-            'src/manifest/Script.js',
-
+            'src/**/*.def.js',
             'src/**/*.test.js'
         ],
 
