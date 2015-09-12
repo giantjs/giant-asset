@@ -96,7 +96,7 @@
             [ "src/jquery.js", "src/app.js", "src/Users.js" ].toAssetCollection('js'),
             "should return combined asset list for specified type");
 
-        equal(
+        deepEqual(
             manifest.getAssets('foo'),
             [].toAssetCollection('foo'),
             "should return empty asset collection for invalid type");
@@ -110,7 +110,7 @@
             [ "jquery.js", "app.js", "Users.js" ].toAssetCollection('js'),
             "should return combined flat asset list for specified type");
 
-        equal(
+        deepEqual(
             manifest.getFlatAssets('foo'),
             [].toAssetCollection('foo'),
             "should return empty asset collection for invalid type");
