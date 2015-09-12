@@ -27,7 +27,7 @@
   "devDependencies": {
   },
   "files": [
-    "giant-asset.js"
+    "lib"
   ],
-  "main": "giant-asset.js"
+  "main": "lib/giant-asset.js"
 }
