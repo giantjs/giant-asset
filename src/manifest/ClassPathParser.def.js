@@ -32,7 +32,7 @@ giant.postpone(giant, 'ClassPathParser', function () {
              * @returns {giant.Path}
              */
             parseClassPath: function (classPath) {
-                return classPath.split(this.RE_CLASS_PATH_DELIMITER).toPath();
+                return classPath.split(self.RE_CLASS_PATH_DELIMITER).toPath();
             }
         });
 });
