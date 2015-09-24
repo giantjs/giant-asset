@@ -2,7 +2,7 @@
 $oop.postpone(giant, 'AssetCollection', function () {
     "use strict";
 
-    var base = giant.Collection.of(giant.Asset),
+    var base = $data.Collection.of(giant.Asset),
         self = base.extend();
 
     /**
@@ -42,7 +42,7 @@ $oop.postpone(giant, 'AssetCollection', function () {
 
             /**
              * Retrieves a dictionary of asset paths associated with flattened asset file names.
-             * @returns {giant.Dictionary}
+             * @returns {$data.Dictionary}
              */
             getFlatAssetFileNameLookup: function () {
                 var result = {},
@@ -89,7 +89,7 @@ $oop.postpone(giant, 'AssetCollection', function () {
                         }
                     });
 
-                return giant.Dictionary.create(result);
+                return $data.Dictionary.create(result);
             },
 
             /**
@@ -103,11 +103,11 @@ $oop.postpone(giant, 'AssetCollection', function () {
         });
 });
 
-$oop.amendPostponed(giant, 'Hash', function () {
+$oop.amendPostponed($data, 'Hash', function () {
     "use strict";
 
-    giant.Hash
-        .addMethods(/** @lends giant.Hash# */{
+    $data.Hash
+        .addMethods(/** @lends $data.Hash# */{
             /**
              * Converts `Hash` instance with array items to `AssetCollection` instance.
              * @returns {giant.AssetCollection}

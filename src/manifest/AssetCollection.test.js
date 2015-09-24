@@ -45,7 +45,7 @@
         var assets = ['foo/bar.js', 'baz/bar.js', 'hello/world.js'].toAssetCollection('baz'),
             assetFileNames = assets.getFlatAssetFileNameLookup();
 
-        ok(assetFileNames.isA(giant.Dictionary), "should return Dictionary instance");
+        ok(assetFileNames.isA($data.Dictionary), "should return Dictionary instance");
         deepEqual(assetFileNames.items, {
             'foo/bar.js'    : 'bar0.js',
             'baz/bar.js'    : 'bar1.js',

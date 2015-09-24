@@ -37,8 +37,8 @@ $oop.postpone(giant, 'Module', function () {
                     .isString(moduleName, "Invalid module name")
                     .isObject(moduleNode, "Invalid module node");
 
-                /** @type {giant.Tree} */
-                var moduleDescriptor = giant.Tree.create(moduleNode),
+                /** @type {$data.Tree} */
+                var moduleDescriptor = $data.Tree.create(moduleNode),
                     classPath = moduleDescriptor.getNode('classPath'.toPath());
 
                 /**
@@ -50,7 +50,7 @@ $oop.postpone(giant, 'Module', function () {
                 /**
                  * Class path associated with the module. The class path identifies the module's
                  * main symbol (object, function, class, etc.) relative to the global object.
-                 * @type {giant.Path}
+                 * @type {$data.Path}
                  */
                 this.classPath = classPath ?
                     classPath.toPathFromClassPath() :
@@ -59,7 +59,7 @@ $oop.postpone(giant, 'Module', function () {
                 /**
                  * Collection of asset collections. Within a module, there's an asset collection associated
                  * with each available asset type.
-                 * @type {giant.Collection}
+                 * @type {$data.Collection}
                  */
                 this.assetCollections = moduleDescriptor
                     .getNodeAsHash('assets'.toPath())

@@ -2,7 +2,7 @@
 $oop.postpone(giant, 'MultiTaskCollection', function () {
     "use strict";
 
-    var base = giant.Collection.of(giant.MultiTask),
+    var base = $data.Collection.of(giant.MultiTask),
         self = base.extend();
 
     /**
@@ -14,7 +14,7 @@ $oop.postpone(giant, 'MultiTaskCollection', function () {
      * @param {Object|Array} items
      * @returns {giant.MultiTaskCollection}
      * @see Array#toMultiTaskCollection
-     * @see giant.Hash#toMultiTaskCollection
+     * @see $data.Hash#toMultiTaskCollection
      */
 
     /**
@@ -22,7 +22,7 @@ $oop.postpone(giant, 'MultiTaskCollection', function () {
      * MultiTask instances. The main purpose of MultiTaskCollection is to provide conversion to
      * config-related objects and classes.
      * @class
-     * @extends giant.Collection
+     * @extends $data.Collection
      * @extends giant.MultiTask
      */
     giant.MultiTaskCollection = self
@@ -48,10 +48,10 @@ $oop.postpone(giant, 'MultiTaskCollection', function () {
         });
 });
 
-$oop.amendPostponed(giant, 'Hash', function () {
+$oop.amendPostponed($data, 'Hash', function () {
     "use strict";
 
-    giant.Hash.addMethods(/** @lends giant.Hash# */{
+    $data.Hash.addMethods(/** @lends $data.Hash# */{
         /**
          * Converts Hash to MultiTaskCollection. Hash items must be MultiTask instances.
          * @returns {giant.MultiTaskCollection}

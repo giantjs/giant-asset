@@ -128,7 +128,7 @@ $oop.postpone(giant, 'MultiTask', function () {
                 var configNode = this._getConfigNode();
 
                 if (targetPrefix) {
-                    return giant.Collection.create(configNode)
+                    return $data.Collection.create(configNode)
                         .mapKeys(function (targetConfig, targetName) {
                             return targetPrefix + targetName;
                         })

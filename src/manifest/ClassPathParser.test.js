@@ -8,7 +8,7 @@
         var classPath;
 
         classPath = giant.ClassPathParser.parseClassPath('foo.bar');
-        ok(classPath.isA(giant.Path), "should return Path instance");
+        ok(classPath.isA($data.Path), "should return Path instance");
         deepEqual(classPath.asArray, ['foo', 'bar'], "should set correct Path contents");
 
         classPath = giant.ClassPathParser.parseClassPath('foo[\'$bar\'].Baz');

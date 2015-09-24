@@ -33,9 +33,9 @@ $oop.postpone(giant, 'Manifest', function () {
                 /**
                  * Defines and maintains the modules of the application.
                  * Collection holds Module instances.
-                 * @type {giant.Collection}
+                 * @type {$data.Collection}
                  */
-                this.modules = giant.Collection.create(manifestNode)
+                this.modules = $data.Collection.create(manifestNode)
                     .mapValues(function (moduleNode, moduleName) {
                         return giant.Module.create(moduleName, moduleNode);
                     });

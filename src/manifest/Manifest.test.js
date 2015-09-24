@@ -36,7 +36,7 @@
 
         var manifest = giant.Manifest.create(manifestNode);
 
-        ok(manifest.modules.isA(giant.Collection), "should initialize modules collection");
+        ok(manifest.modules.isA($data.Collection), "should initialize modules collection");
         equal(manifest.modules.getKeyCount(), 3, "should set modules in collection");
     });
 
@@ -53,7 +53,7 @@
         ok(module.isA(giant.Module), "should return Module instance");
         deepEqual(
             module.assetCollections,
-            giant.Collection.create({
+            $data.Collection.create({
                 js : [ "src/app.js" ].toAssetCollection('js'),
                 css: [ "src/app.css"].toAssetCollection('css')
             }));

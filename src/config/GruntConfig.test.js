@@ -108,7 +108,7 @@
             result;
 
         result = config._getAliasTaskAssociations('dev');
-        ok(result.isA(giant.Hash), "should return Hash instance");
+        ok(result.isA($data.Hash), "should return Hash instance");
         deepEqual(result.items, {dev: ['copy:dev', 'cssMin:dev']}, "should return Hash with correct contents");
 
         result = config._getAliasTaskAssociations('prod');

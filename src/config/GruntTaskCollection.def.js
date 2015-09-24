@@ -11,23 +11,23 @@ $oop.postpone(giant, 'GruntTaskCollection', function () {
      * @param {Object|Array} items
      * @returns {giant.GruntTaskCollection}
      * @see Array#toGruntTaskCollection
-     * @see giant.Hash#toGruntTaskCollection
+     * @see $data.Hash#toGruntTaskCollection
      */
 
     /**
      * The GruntTaskCollection class implements a typed collection for storing and managing
      * GruntTask instances.
      * @class
-     * @extends giant.Collection
+     * @extends $data.Collection
      * @extends giant.GruntTask
      */
-    giant.GruntTaskCollection = giant.Collection.of(giant.GruntTask);
+    giant.GruntTaskCollection = $data.Collection.of(giant.GruntTask);
 });
 
-$oop.amendPostponed(giant, 'Hash', function () {
+$oop.amendPostponed($data, 'Hash', function () {
     "use strict";
 
-    giant.Hash.addMethods(/** @lends giant.Hash# */{
+    $data.Hash.addMethods(/** @lends $data.Hash# */{
         /**
          * Converts Hash to GruntTaskCollection. Hash items must be GruntTask instances.
          * @returns {giant.GruntTaskCollection}

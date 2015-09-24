@@ -2,7 +2,7 @@
 $oop.postpone(giant, 'GruntConfig', function () {
     "use strict";
 
-    var base = giant.Tree,
+    var base = $data.Tree,
         self = base.extend(),
         slice = Array.prototype.slice;
 
@@ -18,13 +18,13 @@ $oop.postpone(giant, 'GruntConfig', function () {
      * The GruntConfig class represents and manages grunt config objects, including adding tasks to,
      * applying, merging configs.
      * @class
-     * @extends giant.Tree
+     * @extends $data.Tree
      */
     giant.GruntConfig = self
         .addPrivateMethods(/** @lends giant.GruntConfig# */{
             /**
              * Returns a dictionary of unique targets as task names associated with task names for each target.
-             * @returns {giant.StringDictionary}
+             * @returns {$data.StringDictionary}
              * @private
              */
             _getAliasTaskAssociations: function () {
@@ -134,7 +134,7 @@ $oop.postpone(giant, 'GruntConfig', function () {
              * @param {giant.GruntConfig} remoteConfig
              * @param {function} [conflictResolver]
              * @returns {giant.GruntConfig}
-             * @see giant.Collection#mergeWith
+             * @see $data.Collection#mergeWith
              */
             mergeWith: function (remoteConfig, conflictResolver) {
                 $assertion.isGruntConfig(remoteConfig, "Invalid grunt config");

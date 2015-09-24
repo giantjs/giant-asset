@@ -29,7 +29,7 @@ $oop.postpone(giant, 'ClassPathParser', function () {
              * Parses class path. The class path is a path delimited by any character that is
              * not word character, numeric, underscore, or dollar sign.
              * @param {string} classPath
-             * @returns {giant.Path}
+             * @returns {$data.Path}
              */
             parseClassPath: function (classPath) {
                 return classPath.split(self.RE_CLASS_PATH_DELIMITER).toPath();
@@ -37,11 +37,11 @@ $oop.postpone(giant, 'ClassPathParser', function () {
         });
 });
 
-$oop.amendPostponed(giant, 'Path', function () {
+$oop.amendPostponed($data, 'Path', function () {
     "use strict";
 
-    giant.Path
-        .addMethods(/** @lends giant.Path# */{
+    $data.Path
+        .addMethods(/** @lends $data.Path# */{
             /**
              * Converts Path to a class path string.
              * @returns {string}
@@ -68,7 +68,7 @@ $oop.amendPostponed(giant, 'Path', function () {
     $oop.extendBuiltIn(String.prototype, /** @lends String# */{
         /**
          * Converts string to Path, treating the string as class path.
-         * @returns {giant.Path}
+         * @returns {$data.Path}
          */
         toPathFromClassPath: function () {
             return giant.ClassPathParser.parseClassPath(this);

@@ -22,10 +22,10 @@
 
         equal(module.moduleName, 'foo', "should set moduleName property");
 
-        ok(module.classPath.isA(giant.Path), "initializes classPath as Path instance");
+        ok(module.classPath.isA($data.Path), "initializes classPath as Path instance");
         ok(module.classPath.toString(), 'foo>bar>baz', "should set class path based on value in module node");
 
-        ok(module.assetCollections.isA(giant.Collection), "should initialize collection of assets");
+        ok(module.assetCollections.isA($data.Collection), "should initialize collection of assets");
         equal(module.assetCollections.getKeyCount(), 1, "should set 1 AssetCollection instance in collection");
     });
 
