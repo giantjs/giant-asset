@@ -50,7 +50,7 @@ giant.postpone(giant, 'GruntConfig', function () {
              * @returns {giant.GruntConfig}
              */
             addMultiTask: function (multiTask) {
-                giant.isMultiTask(multiTask, "Invalid multi task");
+                $assertion.isMultiTask(multiTask, "Invalid multi task");
 
                 this.toCollection()
                     .setItem(multiTask.taskName, multiTask.getConfigNode());
@@ -137,7 +137,7 @@ giant.postpone(giant, 'GruntConfig', function () {
              * @see giant.Collection#mergeWith
              */
             mergeWith: function (remoteConfig, conflictResolver) {
-                giant.isGruntConfig(remoteConfig, "Invalid grunt config");
+                $assertion.isGruntConfig(remoteConfig, "Invalid grunt config");
 
                 var targetQuery = '|>|'.toQuery(),
 
@@ -164,7 +164,7 @@ giant.postpone(giant, 'GruntConfig', function () {
 (function () {
     "use strict";
 
-    giant.addTypes(/** @lends giant */{
+    $assertion.addTypes(/** @lends giant */{
         /** @param {giant.GruntConfig} expr */
         isGruntConfig: function (expr) {
             return giant.GruntConfig.isBaseOf(expr);

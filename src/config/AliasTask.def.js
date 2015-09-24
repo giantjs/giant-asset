@@ -60,7 +60,7 @@ giant.postpone(giant, 'AliasTask', function () {
              * @returns {giant.AliasTask}
              */
             addSubTask: function (taskName) {
-                giant.isString(taskName, "Invalid sub-task name");
+                $assertion.isString(taskName, "Invalid sub-task name");
                 this.subTasks.push(taskName);
                 return this;
             },

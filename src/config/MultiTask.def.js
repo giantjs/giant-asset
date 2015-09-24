@@ -4,7 +4,7 @@ giant.postpone(giant, 'MultiTask', function () {
 
     var base = giant.GruntTask,
         self = base.extend(),
-        validators = giant.validators;
+        validators = $assertion.validators;
 
     /**
      * Creates a MultiTask instance.
@@ -43,7 +43,7 @@ giant.postpone(giant, 'MultiTask', function () {
              * @ignore
              */
             init: function (taskName, configNode) {
-                giant.assert(
+                $assertion.assert(
                     !configNode || validators.isFunction(configNode) || validators.isObject(configNode),
                     "Invalid task config node");
 
@@ -78,7 +78,7 @@ giant.postpone(giant, 'MultiTask', function () {
                     taskPath = this.taskPath,
                     taskHandler = this.taskHandler;
 
-                giant.assert(!!gruntPlugin || !!taskPath || !!taskHandler,
+                $assertion.assert(!!gruntPlugin || !!taskPath || !!taskHandler,
                     "Task has no associated plugin, path, or handler");
 
                 if (gruntPlugin) {
@@ -100,7 +100,7 @@ giant.postpone(giant, 'MultiTask', function () {
              * @returns {giant.MultiTask}
              */
             setPackageName: function (packageName) {
-                giant.isString(packageName, "Invalid packahe name");
+                $assertion.isString(packageName, "Invalid packahe name");
                 this.gruntPlugin = packageName.toGruntPlugin();
                 return this;
             },
@@ -112,7 +112,7 @@ giant.postpone(giant, 'MultiTask', function () {
              * @returns {giant.MultiTask}
              */
             setTaskPath: function (taskPath) {
-                giant.isString(taskPath, "Invalid task path");
+                $assertion.isString(taskPath, "Invalid task path");
                 this.taskPath = taskPath;
                 return this;
             },
@@ -123,7 +123,7 @@ giant.postpone(giant, 'MultiTask', function () {
              * @returns {Object|Array}
              */
             getConfigNode: function (targetPrefix) {
-                giant.isStringOptional(targetPrefix, "Invalid target prefix");
+                $assertion.isStringOptional(targetPrefix, "Invalid target prefix");
 
                 var configNode = this._getConfigNode();
 
@@ -144,7 +144,7 @@ giant.postpone(giant, 'MultiTask', function () {
              * @returns {giant.MultiTask}
              */
             addToConfig: function (config) {
-                giant.isGruntConfig(config, "Invalid grunt config");
+                $assertion.isGruntConfig(config, "Invalid grunt config");
                 config.addMultiTask(this);
                 return this;
             },
@@ -155,7 +155,7 @@ giant.postpone(giant, 'MultiTask', function () {
              * @returns {giant.MultiTask}
              */
             addToCollection: function (multiTaskCollection) {
-                giant.isMultiTaskCollection(multiTaskCollection, "Invalid multi task collection");
+                $assertion.isMultiTaskCollection(multiTaskCollection, "Invalid multi task collection");
                 multiTaskCollection.setItem(this.taskName, this);
                 return this;
             }
@@ -176,7 +176,7 @@ giant.postpone(giant, 'MultiTask', function () {
         }
     });
 
-    giant.addTypes(/** @lends giant */{
+    $assertion.addTypes(/** @lends giant */{
         /** @param {giant.MultiTask} expr */
         isMultiTask: function (expr) {
             return giant.MultiTask.isBaseOf(expr);

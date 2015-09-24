@@ -33,7 +33,7 @@ giant.postpone(giant, 'Module', function () {
              * @ignore
              */
             init: function (moduleName, moduleNode) {
-                giant
+                $assertion
                     .isString(moduleName, "Invalid module name")
                     .isObject(moduleNode, "Invalid module node");
 
@@ -75,7 +75,7 @@ giant.postpone(giant, 'Module', function () {
              * @returns {giant.AssetCollection}
              */
             getAssets: function (assetType) {
-                giant.isString(assetType, "Invalid asset type");
+                $assertion.isString(assetType, "Invalid asset type");
                 return this.assetCollections.getItem(assetType);
             },
 
@@ -85,7 +85,7 @@ giant.postpone(giant, 'Module', function () {
              * @returns {string[]}
              */
             getAssetNames: function (assetType) {
-                giant.isString(assetType, "Invalid asset type");
+                $assertion.isString(assetType, "Invalid asset type");
                 var assets = this.assetCollections.getItem(assetType);
                 return assets ?
                     assets.getAssetNames() :
@@ -124,7 +124,7 @@ giant.postpone(giant, 'Module', function () {
              * @returns {giant.Asset}
              */
             toAsset: function (assetType) {
-                giant
+                $assertion
                     .isString(assetType, "Invalid asset type")
                     .assert(this.assetCollections.getItem(assetType), "Invalid assetType");
                 return (this.moduleName + '.' + assetType).toAsset(assetType);

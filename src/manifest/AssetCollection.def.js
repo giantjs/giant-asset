@@ -24,7 +24,7 @@ giant.postpone(giant, 'AssetCollection', function () {
              * @ignore
              */
             init: function (items) {
-                giant.isArray(items, "Invalid asset list");
+                $assertion.isArray(items, "Invalid asset list");
                 base.init.call(this, items);
             },
 

@@ -30,7 +30,7 @@ giant.postpone(giant, 'Asset', function () {
              * @ignore
              */
             init: function (assetName, assetType) {
-                giant
+                $assertion
                     .isString(assetName, "Invalid asset name")
                     .isString(assetType, "Invalid asset type");
 

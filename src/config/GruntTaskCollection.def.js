@@ -51,7 +51,7 @@ giant.amendPostponed(giant, 'Hash', function () {
         }
     });
 
-    giant.addTypes(/** @lends giant */{
+    $assertion.addTypes(/** @lends giant */{
         /** @param {giant.GruntTaskCollection} expr */
         isGruntTaskCollection: function (expr) {
             return giant.GruntTaskCollection.isBaseOf(expr);

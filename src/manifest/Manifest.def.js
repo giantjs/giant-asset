@@ -28,7 +28,7 @@ giant.postpone(giant, 'Manifest', function () {
              * @ignore
              */
             init: function (manifestNode) {
-                giant.isObject(manifestNode, "Invalid manifest node");
+                $assertion.isObject(manifestNode, "Invalid manifest node");
 
                 /**
                  * Defines and maintains the modules of the application.
@@ -47,7 +47,7 @@ giant.postpone(giant, 'Manifest', function () {
              * @returns {giant.Module}
              */
             getModule: function (moduleName) {
-                giant.isString(moduleName, "Invalid module name");
+                $assertion.isString(moduleName, "Invalid module name");
                 return this.modules.getItem(moduleName);
             },
 

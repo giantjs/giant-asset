@@ -30,7 +30,7 @@ giant.postpone(giant, 'GruntPlugin', function () {
              * @ignore
              */
             init: function (packageName) {
-                giant.isString(packageName, "Invalid package name");
+                $assertion.isString(packageName, "Invalid package name");
 
                 /**
                  * Name of the NPM package associated with the grunt plugin.

@@ -31,7 +31,7 @@ giant.postpone(giant, 'GruntTask', function () {
              * @ignore
              */
             init: function (taskName) {
-                giant.isString(taskName, "Invalid task name");
+                $assertion.isString(taskName, "Invalid task name");
 
                 /**
                  * Name of the grunt task.
@@ -63,7 +63,7 @@ giant.postpone(giant, 'GruntTask', function () {
              * @returns {giant.GruntTask}
              */
             setTaskHandler: function (taskHandler) {
-                giant.isFunction(taskHandler, "Invalid task handler");
+                $assertion.isFunction(taskHandler, "Invalid task handler");
                 this.taskHandler = taskHandler;
                 return this;
             },
@@ -74,7 +74,7 @@ giant.postpone(giant, 'GruntTask', function () {
              * @returns {giant.GruntTask}
              */
             addToCollection: function (taskCollection) {
-                giant.isGruntTaskCollection(taskCollection, "Invalid grunt task collection");
+                $assertion.isGruntTaskCollection(taskCollection, "Invalid grunt task collection");
                 taskCollection.setItem(this.taskName, this);
                 return this;
             }

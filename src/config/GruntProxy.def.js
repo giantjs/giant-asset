@@ -38,7 +38,7 @@ giant.postpone(giant, 'GruntProxy', function () {
              * @returns {giant.GruntProxy}
              */
             setGruntObject: function (grunt) {
-                giant.isObject(grunt, "Invalid grunt object");
+                $assertion.isObject(grunt, "Invalid grunt object");
                 this.grunt = grunt;
                 return this;
             },
@@ -49,7 +49,7 @@ giant.postpone(giant, 'GruntProxy', function () {
              * @returns {*}
              */
             configInit: function (config) {
-                giant.assert(!!this.grunt, "Grunt reference not set");
+                $assertion.assert(!!this.grunt, "Grunt reference not set");
                 return this.grunt.config.init(config);
             },
 
@@ -59,7 +59,7 @@ giant.postpone(giant, 'GruntProxy', function () {
              * @returns {*}
              */
             configMerge: function (config) {
-                giant.assert(!!this.grunt, "Grunt reference not set");
+                $assertion.assert(!!this.grunt, "Grunt reference not set");
                 return this.grunt.config.merge(config);
             },
 
@@ -70,7 +70,7 @@ giant.postpone(giant, 'GruntProxy', function () {
              * @returns {*}
              */
             configSet: function (propertyName, config) {
-                giant.assert(!!this.grunt, "Grunt reference not set");
+                $assertion.assert(!!this.grunt, "Grunt reference not set");
                 return this.grunt.config.set(propertyName, config);
             },
 
@@ -87,7 +87,7 @@ giant.postpone(giant, 'GruntProxy', function () {
              * @returns {*}
              */
             registerTask: function () {
-                giant.assert(!!this.grunt, "Grunt reference not set");
+                $assertion.assert(!!this.grunt, "Grunt reference not set");
                 return this.grunt.registerTask.apply(this.grunt, arguments);
             },
 
@@ -96,7 +96,7 @@ giant.postpone(giant, 'GruntProxy', function () {
              * @returns {*}
              */
             registerMultiTask: function () {
-                giant.assert(!!this.grunt, "Grunt reference not set");
+                $assertion.assert(!!this.grunt, "Grunt reference not set");
                 return this.grunt.registerMultiTask.apply(this.grunt, arguments);
             },
 
@@ -105,7 +105,7 @@ giant.postpone(giant, 'GruntProxy', function () {
              * returns {*}
              */
             loadTasks: function () {
-                giant.assert(!!this.grunt, "Grunt reference not set");
+                $assertion.assert(!!this.grunt, "Grunt reference not set");
                 return this.grunt.loadTasks.apply(this.grunt, arguments);
             },
 
@@ -114,7 +114,7 @@ giant.postpone(giant, 'GruntProxy', function () {
              * returns {*}
              */
             loadNpmTasks: function () {
-                giant.assert(!!this.grunt, "Grunt reference not set");
+                $assertion.assert(!!this.grunt, "Grunt reference not set");
                 return this.grunt.loadNpmTasks.apply(this.grunt, arguments);
             }
         });
