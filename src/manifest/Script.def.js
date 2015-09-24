@@ -1,5 +1,5 @@
 /*global giant */
-giant.postpone(giant, 'Script', function () {
+$oop.postpone(giant, 'Script', function () {
     "use strict";
 
     var base = giant.Asset,
@@ -41,7 +41,7 @@ giant.postpone(giant, 'Script', function () {
         });
 });
 
-giant.amendPostponed(giant, 'Asset', function () {
+$oop.amendPostponed(giant, 'Asset', function () {
     "use strict";
 
     giant.Asset

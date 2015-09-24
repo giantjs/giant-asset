@@ -1,5 +1,5 @@
 /*global giant */
-giant.postpone(giant, 'AssetCollection', function () {
+$oop.postpone(giant, 'AssetCollection', function () {
     "use strict";
 
     var base = giant.Collection.of(giant.Asset),
@@ -15,7 +15,7 @@ giant.postpone(giant, 'AssetCollection', function () {
     /**
      * The AssetCollection offers an API to perform uniform operations on a set of Asset instances.
      * @class
-     * @extends giant.Base
+     * @extends $oop.Base
      */
     giant.AssetCollection = self
         .addMethods(/** @lends giant.AssetCollection# */{
@@ -103,7 +103,7 @@ giant.postpone(giant, 'AssetCollection', function () {
         });
 });
 
-giant.amendPostponed(giant, 'Hash', function () {
+$oop.amendPostponed(giant, 'Hash', function () {
     "use strict";
 
     giant.Hash
@@ -121,7 +121,7 @@ giant.amendPostponed(giant, 'Hash', function () {
 (function () {
     "use strict";
 
-    giant.extendBuiltIn(Array.prototype, /** @lends Array# */{
+    $oop.extendBuiltIn(Array.prototype, /** @lends Array# */{
         /**
          * @param {string} assetType
          * @returns {giant.AssetCollection}

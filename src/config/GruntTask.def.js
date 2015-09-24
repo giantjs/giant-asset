@@ -1,8 +1,8 @@
 /*global giant */
-giant.postpone(giant, 'GruntTask', function () {
+$oop.postpone(giant, 'GruntTask', function () {
     "use strict";
 
-    var base = giant.Base,
+    var base = $oop.Base,
         self = base.extend();
 
     /**
@@ -20,7 +20,7 @@ giant.postpone(giant, 'GruntTask', function () {
      * The GruntTask implements a basic grunt task.
      * Basic tasks allow the user to implement tasks with a custom task handler.
      * @class
-     * @extends giant.Base
+     * @extends $oop.Base
      * @see http://gruntjs.com/creating-tasks#basic-tasks
      * @see http://gruntjs.com/creating-tasks#custom-tasks
      */
@@ -84,7 +84,7 @@ giant.postpone(giant, 'GruntTask', function () {
 (function () {
     "use strict";
 
-    giant.extendBuiltIn(String.prototype, /** @lends String# */{
+    $oop.extendBuiltIn(String.prototype, /** @lends String# */{
         /**
          * Converts string to GruntTask, treating the string as task name.
          * @returns {giant.GruntTask}

@@ -1,5 +1,5 @@
 /*global giant */
-giant.postpone(giant, 'AliasTask', function () {
+$oop.postpone(giant, 'AliasTask', function () {
     "use strict";
 
     var base = giant.GruntTask,
@@ -119,7 +119,7 @@ giant.postpone(giant, 'AliasTask', function () {
 (function () {
     "use strict";
 
-    giant.extendBuiltIn(String.prototype, /** @lends String# */{
+    $oop.extendBuiltIn(String.prototype, /** @lends String# */{
         /**
          * Converts string to AliasTask, treating the string as task name.
          * @returns {giant.AliasTask}

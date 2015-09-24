@@ -1,5 +1,5 @@
 /*global giant */
-giant.postpone(giant, 'MultiTaskCollection', function () {
+$oop.postpone(giant, 'MultiTaskCollection', function () {
     "use strict";
 
     var base = giant.Collection.of(giant.MultiTask),
@@ -48,7 +48,7 @@ giant.postpone(giant, 'MultiTaskCollection', function () {
         });
 });
 
-giant.amendPostponed(giant, 'Hash', function () {
+$oop.amendPostponed(giant, 'Hash', function () {
     "use strict";
 
     giant.Hash.addMethods(/** @lends giant.Hash# */{
@@ -65,7 +65,7 @@ giant.amendPostponed(giant, 'Hash', function () {
 (function () {
     "use strict";
 
-    giant.extendBuiltIn(Array.prototype, /** @lends Array# */{
+    $oop.extendBuiltIn(Array.prototype, /** @lends Array# */{
         /**
          * Converts Array to MultiTaskCollection. Array items must be MultiTask instances.
          * @returns {giant.MultiTaskCollection}

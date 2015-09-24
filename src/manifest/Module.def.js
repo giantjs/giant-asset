@@ -1,8 +1,8 @@
 /*global giant */
-giant.postpone(giant, 'Module', function () {
+$oop.postpone(giant, 'Module', function () {
     "use strict";
 
-    var base = giant.Base,
+    var base = $oop.Base,
         self = base.extend();
 
     /**
@@ -23,7 +23,7 @@ giant.postpone(giant, 'Module', function () {
      * (Eg. a page class that needs to be instantiated before opening that page, assuming that
      * modules correspond to pages.)
      * @class
-     * @extends giant.Base
+     * @extends $oop.Base
      */
     giant.Module = self
         .addMethods(/** @lends giant.Module# */{
@@ -135,7 +135,7 @@ giant.postpone(giant, 'Module', function () {
 (function () {
     "use strict";
 
-    giant.extendBuiltIn(String.prototype, /** @lends String# */{
+    $oop.extendBuiltIn(String.prototype, /** @lends String# */{
         /**
          * @param {object} [moduleNode]
          * @returns {giant.Module}

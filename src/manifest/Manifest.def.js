@@ -1,8 +1,8 @@
 /*global giant */
-giant.postpone(giant, 'Manifest', function () {
+$oop.postpone(giant, 'Manifest', function () {
     "use strict";
 
-    var base = giant.Base,
+    var base = $oop.Base,
         self = base.extend(),
         slice = Array.prototype.slice;
 
@@ -19,7 +19,7 @@ giant.postpone(giant, 'Manifest', function () {
      * The Manifest class describes the modularity and assets of an application.
      * Organizes assets (usually JS and CSS files that make up the application) into modules.
      * @class
-     * @extends giant.Base
+     * @extends $oop.Base
      */
     giant.Manifest = self
         .addMethods(/** @lends giant.Manifest# */{

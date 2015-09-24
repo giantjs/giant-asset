@@ -1,5 +1,5 @@
 /*global giant */
-giant.postpone(giant, 'MultiTask', function () {
+$oop.postpone(giant, 'MultiTask', function () {
     "use strict";
 
     var base = giant.GruntTask,
@@ -165,7 +165,7 @@ giant.postpone(giant, 'MultiTask', function () {
 (function () {
     "use strict";
 
-    giant.extendBuiltIn(String.prototype, /** @lends String# */{
+    $oop.extendBuiltIn(String.prototype, /** @lends String# */{
         /**
          * Converts string to MultiTask, treating the string as the plugin name.
          * @param {object} [configNode] Optional task config.

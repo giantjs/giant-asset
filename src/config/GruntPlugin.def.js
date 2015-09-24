@@ -1,8 +1,8 @@
 /*global giant */
-giant.postpone(giant, 'GruntPlugin', function () {
+$oop.postpone(giant, 'GruntPlugin', function () {
     "use strict";
 
-    var base = giant.Base,
+    var base = $oop.Base,
         self = base.extend();
 
     /**
@@ -21,7 +21,7 @@ giant.postpone(giant, 'GruntPlugin', function () {
     /**
      * The GruntPlugin class represents a grunt plugin.
      * @class
-     * @extends giant.Base
+     * @extends $oop.Base
      */
     giant.GruntPlugin = self
         .addMethods(/** @lends giant.GruntPlugin# */{
@@ -53,7 +53,7 @@ giant.postpone(giant, 'GruntPlugin', function () {
 (function () {
     "use strict";
 
-    giant.extendBuiltIn(String.prototype, /** @lends String# */{
+    $oop.extendBuiltIn(String.prototype, /** @lends String# */{
         /**
          * Converts string to GruntPlugin, treating the string as the name of an NPM package.
          * @returns {giant.AliasTask}

@@ -1,8 +1,8 @@
 /*global giant */
-giant.postpone(giant, 'Asset', function () {
+$oop.postpone(giant, 'Asset', function () {
     "use strict";
 
-    var base = giant.Base,
+    var base = $oop.Base,
         self = base.extend();
 
     /**
@@ -20,7 +20,7 @@ giant.postpone(giant, 'Asset', function () {
     /**
      * The Asset class represents a single asset (file) of the application.
      * @class
-     * @extends giant.Base
+     * @extends $oop.Base
      */
     giant.Asset = self
         .addMethods(/** @lends giant.Asset# */{
@@ -96,7 +96,7 @@ giant.postpone(giant, 'Asset', function () {
 (function () {
     "use strict";
 
-    giant.extendBuiltIn(String.prototype, /** @lends String# */{
+    $oop.extendBuiltIn(String.prototype, /** @lends String# */{
         /**
          * Converts string to Asset, interpreting the string as asset name.
          * @param {string} assetType

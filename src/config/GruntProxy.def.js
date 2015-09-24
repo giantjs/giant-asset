@@ -1,8 +1,8 @@
 /*global giant */
-giant.postpone(giant, 'GruntProxy', function () {
+$oop.postpone(giant, 'GruntProxy', function () {
     "use strict";
 
-    var base = giant.Base,
+    var base = $oop.Base,
         self = base.extend();
 
     /**
@@ -15,7 +15,7 @@ giant.postpone(giant, 'GruntProxy', function () {
     /**
      * The GruntProxy singleton provides a testable API to communicate with grunt.
      * @class
-     * @extends giant.Base
+     * @extends $oop.Base
      */
     giant.GruntProxy = self
         .setInstanceMapper(function () {

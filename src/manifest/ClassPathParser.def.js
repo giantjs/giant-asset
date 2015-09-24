@@ -1,14 +1,14 @@
 /*global giant */
-giant.postpone(giant, 'ClassPathParser', function () {
+$oop.postpone(giant, 'ClassPathParser', function () {
     "use strict";
 
-    var base = giant.Base,
+    var base = $oop.Base,
         self = base.extend();
 
     /**
      * The ClassPathParser has the sole purpose of parsing class path string expressions.
      * @class
-     * @extends giant.Base
+     * @extends $oop.Base
      */
     giant.ClassPathParser = self
         .addConstants(/** @lends giant.ClassPathParser */{
@@ -37,7 +37,7 @@ giant.postpone(giant, 'ClassPathParser', function () {
         });
 });
 
-giant.amendPostponed(giant, 'Path', function () {
+$oop.amendPostponed(giant, 'Path', function () {
     "use strict";
 
     giant.Path
@@ -65,7 +65,7 @@ giant.amendPostponed(giant, 'Path', function () {
 (function () {
     "use strict";
 
-    giant.extendBuiltIn(String.prototype, /** @lends String# */{
+    $oop.extendBuiltIn(String.prototype, /** @lends String# */{
         /**
          * Converts string to Path, treating the string as class path.
          * @returns {giant.Path}

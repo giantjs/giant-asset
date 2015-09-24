@@ -1,5 +1,5 @@
 /*global giant */
-giant.postpone(giant, 'GruntTaskCollection', function () {
+$oop.postpone(giant, 'GruntTaskCollection', function () {
     "use strict";
 
     /**
@@ -24,7 +24,7 @@ giant.postpone(giant, 'GruntTaskCollection', function () {
     giant.GruntTaskCollection = giant.Collection.of(giant.GruntTask);
 });
 
-giant.amendPostponed(giant, 'Hash', function () {
+$oop.amendPostponed(giant, 'Hash', function () {
     "use strict";
 
     giant.Hash.addMethods(/** @lends giant.Hash# */{
@@ -41,7 +41,7 @@ giant.amendPostponed(giant, 'Hash', function () {
 (function () {
     "use strict";
 
-    giant.extendBuiltIn(Array.prototype, /** @lends Array# */{
+    $oop.extendBuiltIn(Array.prototype, /** @lends Array# */{
         /**
          * Converts Array to GruntTaskCollection. Array items must be GruntTask instances.
          * @returns {giant.GruntTaskCollection}

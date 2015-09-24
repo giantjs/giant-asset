@@ -1,5 +1,5 @@
 /*global giant */
-giant.postpone(giant, 'GruntConfig', function () {
+$oop.postpone(giant, 'GruntConfig', function () {
     "use strict";
 
     var base = giant.Tree,
