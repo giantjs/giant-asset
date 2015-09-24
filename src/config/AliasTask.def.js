@@ -1,8 +1,8 @@
-/*global giant */
-$oop.postpone(giant, 'AliasTask', function () {
+/*global $asset */
+$oop.postpone($asset, 'AliasTask', function () {
     "use strict";
 
-    var base = giant.GruntTask,
+    var base = $asset.GruntTask,
         self = base.extend(),
         slice = Array.prototype.slice;
 
@@ -10,10 +10,10 @@ $oop.postpone(giant, 'AliasTask', function () {
      * Creates an AliasTask instance.
      * AliasTask instances may also be created via conversion from String,
      * where the string is treated as the name of the task.
-     * @name giant.AliasTask.create
+     * @name $asset.AliasTask.create
      * @function
      * @param {string} taskName Name of alias task.
-     * @returns {giant.AliasTask}
+     * @returns {$asset.AliasTask}
      * @see String#toAliasTask
      */
 
@@ -21,14 +21,14 @@ $oop.postpone(giant, 'AliasTask', function () {
      * The AliasTask implements an 'alias' grunt task.
      * Alias grunt tasks group other tasks into a single task.
      * @class
-     * @extends giant.GruntTask
+     * @extends $asset.GruntTask
      * @see http://gruntjs.com/creating-tasks#alias-tasks
      */
-    giant.AliasTask = self
+    $asset.AliasTask = self
         .setInstanceMapper(function (taskName) {
             return taskName;
         })
-        .addMethods(/** @lends giant.AliasTask# */{
+        .addMethods(/** @lends $asset.AliasTask# */{
             /**
              * @param {string} taskName
              * @ignore
@@ -46,10 +46,10 @@ $oop.postpone(giant, 'AliasTask', function () {
             /**
              * Applies task by registering it via the grunt API.
              * @param {string} [description] Optional description of the task.
-             * @returns {giant.AliasTask}
+             * @returns {$asset.AliasTask}
              */
             applyTask: function (description) {
-                giant.GruntProxy.create()
+                $asset.GruntProxy.create()
                     .registerTask(this.taskName, description, this.subTasks);
                 return this;
             },
@@ -57,7 +57,7 @@ $oop.postpone(giant, 'AliasTask', function () {
             /**
              * Adds sub-task to the current alias task as the last sub-task.
              * @param {string} taskName Name of sub-task to be added.
-             * @returns {giant.AliasTask}
+             * @returns {$asset.AliasTask}
              */
             addSubTask: function (taskName) {
                 $assertion.isString(taskName, "Invalid sub-task name");
@@ -70,7 +70,7 @@ $oop.postpone(giant, 'AliasTask', function () {
              * or at the end when the specified sub-task does not exist.
              * @param {string} taskName
              * @param {string} [afterTaskName]
-             * @returns {giant.AliasTask}
+             * @returns {$asset.AliasTask}
              */
             addSubTaskAfter: function (taskName, afterTaskName) {
                 var subTasks = this.subTasks,
@@ -90,7 +90,7 @@ $oop.postpone(giant, 'AliasTask', function () {
              * or at the beginning when the specified sub-task does not exist.
              * @param {string} taskName
              * @param {string} [beforeTaskName]
-             * @returns {giant.AliasTask}
+             * @returns {$asset.AliasTask}
              */
             addSubTaskBefore: function (taskName, beforeTaskName) {
                 var subTasks = this.subTasks,
@@ -107,7 +107,7 @@ $oop.postpone(giant, 'AliasTask', function () {
 
             /**
              * Adds multiple sub-tasks. Each argument represents a sub-task.
-             * @returns {giant.AliasTask}
+             * @returns {$asset.AliasTask}
              */
             addSubTasks: function () {
                 this.subTasks = this.subTasks.concat(slice.call(arguments));
@@ -122,10 +122,10 @@ $oop.postpone(giant, 'AliasTask', function () {
     $oop.extendBuiltIn(String.prototype, /** @lends String# */{
         /**
          * Converts string to AliasTask, treating the string as task name.
-         * @returns {giant.AliasTask}
+         * @returns {$asset.AliasTask}
          */
         toAliasTask: function () {
-            var aliasTask = giant.AliasTask.create(this.valueOf());
+            var aliasTask = $asset.AliasTask.create(this.valueOf());
             aliasTask.addSubTasks.apply(aliasTask, arguments);
             return aliasTask;
         }

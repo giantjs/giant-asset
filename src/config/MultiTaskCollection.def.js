@@ -1,18 +1,18 @@
-/*global giant */
-$oop.postpone(giant, 'MultiTaskCollection', function () {
+/*global $asset */
+$oop.postpone($asset, 'MultiTaskCollection', function () {
     "use strict";
 
-    var base = $data.Collection.of(giant.MultiTask),
+    var base = $data.Collection.of($asset.MultiTask),
         self = base.extend();
 
     /**
      * Creates a MultiTaskCollection instance.
      * MultiTaskCollection instances may also be created via conversion from Array and Hash.
      * (In fact those are favorable to .create().)
-     * @name giant.MultiTaskCollection.create
+     * @name $asset.MultiTaskCollection.create
      * @function
      * @param {Object|Array} items
-     * @returns {giant.MultiTaskCollection}
+     * @returns {$asset.MultiTaskCollection}
      * @see Array#toMultiTaskCollection
      * @see $data.Hash#toMultiTaskCollection
      */
@@ -23,10 +23,10 @@ $oop.postpone(giant, 'MultiTaskCollection', function () {
      * config-related objects and classes.
      * @class
      * @extends $data.Collection
-     * @extends giant.MultiTask
+     * @extends $asset.MultiTask
      */
-    giant.MultiTaskCollection = self
-        .addMethods(/** @lends giant.MultiTaskCollection# */{
+    $asset.MultiTaskCollection = self
+        .addMethods(/** @lends $asset.MultiTaskCollection# */{
             /**
              * Generates a grunt config object for all tasks in the collection,
              * with targets optionally prefixed.
@@ -40,10 +40,10 @@ $oop.postpone(giant, 'MultiTaskCollection', function () {
             /**
              * Converts task collection to a GruntConfig instance.
              * @param {string} [targetPrefix] Optional prefix for all targets of all tasks.
-             * @returns {giant.GruntConfig}
+             * @returns {$asset.GruntConfig}
              */
             toGruntConfig: function (targetPrefix) {
-                return giant.GruntConfig.create(this.getConfigNode(targetPrefix));
+                return $asset.GruntConfig.create(this.getConfigNode(targetPrefix));
             }
         });
 });
@@ -54,10 +54,10 @@ $oop.amendPostponed($data, 'Hash', function () {
     $data.Hash.addMethods(/** @lends $data.Hash# */{
         /**
          * Converts Hash to MultiTaskCollection. Hash items must be MultiTask instances.
-         * @returns {giant.MultiTaskCollection}
+         * @returns {$asset.MultiTaskCollection}
          */
         toMultiTaskCollection: function () {
-            return giant.MultiTaskCollection.create(this.items);
+            return $asset.MultiTaskCollection.create(this.items);
         }
     });
 });
@@ -68,23 +68,23 @@ $oop.amendPostponed($data, 'Hash', function () {
     $oop.extendBuiltIn(Array.prototype, /** @lends Array# */{
         /**
          * Converts Array to MultiTaskCollection. Array items must be MultiTask instances.
-         * @returns {giant.MultiTaskCollection}
+         * @returns {$asset.MultiTaskCollection}
          */
         toMultiTaskCollection: function () {
-            return giant.MultiTaskCollection.create(this);
+            return $asset.MultiTaskCollection.create(this);
         }
     });
 
-    $assertion.addTypes(/** @lends giant */{
-        /** @param {giant.MultiTaskCollection} expr */
+    $assertion.addTypes(/** @lends $asset */{
+        /** @param {$asset.MultiTaskCollection} expr */
         isMultiTaskCollection: function (expr) {
-            return giant.MultiTaskCollection.isBaseOf(expr);
+            return $asset.MultiTaskCollection.isBaseOf(expr);
         },
 
-        /** @param {giant.MultiTaskCollection} expr */
+        /** @param {$asset.MultiTaskCollection} expr */
         isMultiTaskCollectionOptional: function (expr) {
             return typeof expr === 'undefined' ||
-                giant.MultiTaskCollection.isBaseOf(expr);
+                $asset.MultiTaskCollection.isBaseOf(expr);
         }
     });
 }());

@@ -1,4 +1,4 @@
-/*global giant */
+/*global $asset */
 (function () {
     "use strict";
 
@@ -6,10 +6,10 @@
 
     test("Instantiation", function () {
         throws(function () {
-            giant.GruntTask.create();
+            $asset.GruntTask.create();
         }, "should raise exception on missing arguments");
 
-        var task = giant.GruntTask.create('foo');
+        var task = $asset.GruntTask.create('foo');
 
         equal(task.taskName, 'foo', "should set taskName property");
 
@@ -20,18 +20,18 @@
     test("Conversion from string", function () {
         var task = 'foo'.toGruntTask();
 
-        ok(task.isA(giant.GruntTask), "should return GruntTask instance");
+        ok(task.isA($asset.GruntTask), "should return GruntTask instance");
         equal(task.taskName, 'foo', "should set task name");
     });
 
     test("Task registration", function () {
         expect(4);
 
-        var task = giant.GruntTask.create('foo')
+        var task = $asset.GruntTask.create('foo')
             .setTaskHandler(function () {
             });
 
-        giant.GruntProxy.addMocks({
+        $asset.GruntProxy.addMocks({
             registerTask: function (name, description, taskHandler) {
                 equal(name, 'foo', "should specify task name");
                 equal(description, 'bar', "should pass description");
@@ -41,11 +41,11 @@
 
         strictEqual(task.applyTask('bar'), task, "should be chainable");
 
-        giant.GruntProxy.removeMocks();
+        $asset.GruntProxy.removeMocks();
     });
 
     test("Setting handler", function () {
-        var task = giant.GruntTask.create('foo');
+        var task = $asset.GruntTask.create('foo');
 
         function taskHandler() {
         }
@@ -62,7 +62,7 @@
         expect(5);
 
         var task = 'foo'.toGruntTask(),
-            collection = giant.GruntTaskCollection.create();
+            collection = $asset.GruntTaskCollection.create();
 
         throws(function () {
             task.addToCollection();

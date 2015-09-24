@@ -1,5 +1,5 @@
-/*global giant */
-$oop.postpone(giant, 'Asset', function () {
+/*global $asset */
+$oop.postpone($asset, 'Asset', function () {
     "use strict";
 
     var base = $oop.Base,
@@ -9,11 +9,11 @@ $oop.postpone(giant, 'Asset', function () {
      * Creates an Asset instance.
      * Assets may also be created via conversion from string.
      * TODO: Rename assetName to assetPath.
-     * @name giant.Asset.create
+     * @name $asset.Asset.create
      * @function
      * @param {string} assetName Asset name, usually a relative path.
      * @param {string} assetType Asset type, eg. 'css', 'js', etc.
-     * @returns {giant.Asset}
+     * @returns {$asset.Asset}
      * @see String#toAsset
      */
 
@@ -22,8 +22,8 @@ $oop.postpone(giant, 'Asset', function () {
      * @class
      * @extends $oop.Base
      */
-    giant.Asset = self
-        .addMethods(/** @lends giant.Asset# */{
+    $asset.Asset = self
+        .addMethods(/** @lends $asset.Asset# */{
             /**
              * @param {string} assetName
              * @param {string} assetType
@@ -50,7 +50,7 @@ $oop.postpone(giant, 'Asset', function () {
             /**
              * Adds prefix to the asset name.
              * @param {string} assetPrefix
-             * @returns {giant.Asset}
+             * @returns {$asset.Asset}
              */
             addPrefix: function (assetPrefix) {
                 this.assetName = assetPrefix + this.assetName;
@@ -86,7 +86,7 @@ $oop.postpone(giant, 'Asset', function () {
             /**
              * Serializes the asset to string.
              * Typically used for inclusion in a project file, eg. index.html.
-             * @name giant.Asset#toString
+             * @name $asset.Asset#toString
              * @function
              * @returns {string}
              */
@@ -100,10 +100,10 @@ $oop.postpone(giant, 'Asset', function () {
         /**
          * Converts string to Asset, interpreting the string as asset name.
          * @param {string} assetType
-         * @returns {giant.Asset}
+         * @returns {$asset.Asset}
          */
         toAsset: function (assetType) {
-            return giant.Asset.create(this.valueOf(), assetType);
+            return $asset.Asset.create(this.valueOf(), assetType);
         }
     });
 }());

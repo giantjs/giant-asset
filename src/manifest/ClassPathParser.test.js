@@ -1,4 +1,4 @@
-/*global giant */
+/*global $asset */
 (function () {
     "use strict";
 
@@ -7,11 +7,11 @@
     test("Parsing class path", function () {
         var classPath;
 
-        classPath = giant.ClassPathParser.parseClassPath('foo.bar');
+        classPath = $asset.ClassPathParser.parseClassPath('foo.bar');
         ok(classPath.isA($data.Path), "should return Path instance");
         deepEqual(classPath.asArray, ['foo', 'bar'], "should set correct Path contents");
 
-        classPath = giant.ClassPathParser.parseClassPath('foo[\'$bar\'].Baz');
+        classPath = $asset.ClassPathParser.parseClassPath('foo[\'$bar\'].Baz');
         deepEqual(
             classPath.asArray,
             ['foo', '$bar', 'Baz'],
@@ -23,7 +23,7 @@
 
         deepEqual(
             classPathString.toPathFromClassPath(),
-            giant.ClassPathParser.parseClassPath(classPathString),
+            $asset.ClassPathParser.parseClassPath(classPathString),
             "should parse class path");
     });
 

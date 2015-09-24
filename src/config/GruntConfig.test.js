@@ -1,11 +1,11 @@
-/*global giant */
+/*global $asset */
 (function () {
     "use strict";
 
     module("GruntConfig");
 
     test("Task addition", function () {
-        var config = giant.GruntConfig.create(),
+        var config = $asset.GruntConfig.create(),
             task = 'foo'.toMultiTask({
                 hello: "world"
             }),
@@ -33,7 +33,7 @@
     });
 
     test("Task config getter", function () {
-        var config = giant.GruntConfig.create({
+        var config = $asset.GruntConfig.create({
             hello: "world"
         });
 
@@ -43,13 +43,13 @@
     test("Config initialization", function () {
         expect(3);
 
-        var config = giant.GruntConfig.create({
+        var config = $asset.GruntConfig.create({
                 foo: {hello: "world"},
                 bar: {hi: "all"}
             }),
             tasks = [];
 
-        giant.GruntProxy.addMocks({
+        $asset.GruntProxy.addMocks({
             configEscape: function (propertyName) {
                 return propertyName;
             },
@@ -65,9 +65,9 @@
             ['bar.hi', "all"]
         ], "should set config nodes in grunt config object");
 
-        giant.GruntProxy.removeMocks();
+        $asset.GruntProxy.removeMocks();
 
-        giant.GruntProxy.addMocks({
+        $asset.GruntProxy.addMocks({
             configInit: function (configNode) {
                 strictEqual(configNode, config.items,
                     "should pass config node to grunt.config.init() when wipe argument is set");
@@ -76,15 +76,15 @@
 
         config.applyConfig(true);
 
-        giant.GruntProxy.removeMocks();
+        $asset.GruntProxy.removeMocks();
     });
 
     test("Config merge", function () {
         expect(2);
 
-        var config = giant.GruntConfig.create();
+        var config = $asset.GruntConfig.create();
 
-        giant.GruntProxy.addMocks({
+        $asset.GruntProxy.addMocks({
             configMerge: function (configNode) {
                 strictEqual(configNode, config.items, "should pass config node to grunt.config.merge()");
             }
@@ -92,11 +92,11 @@
 
         strictEqual(config.mergeConfig(), config, "should be chainable");
 
-        giant.GruntProxy.removeMocks();
+        $asset.GruntProxy.removeMocks();
     });
 
     test("Getting alias task association", function () {
-        var config = giant.GruntConfig.create({
+        var config = $asset.GruntConfig.create({
                 copy  : {
                     dev : {},
                     prod: {}
@@ -122,7 +122,7 @@
     });
 
     test("Getting alias tasks grouped by target", function () {
-        var config = giant.GruntConfig.create({
+        var config = $asset.GruntConfig.create({
                 copy  : {
                     dev : {},
                     prod: {}
@@ -134,7 +134,7 @@
             result;
 
         result = config.getAliasTasksGroupedByTarget();
-        ok(result.isA(giant.GruntTaskCollection), "should return GruntTaskCollection instance");
+        ok(result.isA($asset.GruntTaskCollection), "should return GruntTaskCollection instance");
         deepEqual(result.items, {
             dev : 'dev'.toAliasTask().addSubTasks('copy:dev', 'cssMin:dev'),
             prod: 'prod'.toAliasTask().addSubTask('copy:prod')
@@ -142,8 +142,8 @@
     });
 
     test("Merging with other config", function () {
-        var tasks = giant.MultiTaskCollection.create(),
-            configA = giant.GruntConfig.create({
+        var tasks = $asset.MultiTaskCollection.create(),
+            configA = $asset.GruntConfig.create({
                 copy  : {
                     dev : {foo: "baz"},
                     prod: {hello: "all"}
@@ -166,7 +166,7 @@
 
         configMerged = configA.mergeWith(tasks.toGruntConfig('_'));
 
-        ok(configMerged.isA(giant.GruntConfig), "should return GruntConfig instance");
+        ok(configMerged.isA($asset.GruntConfig), "should return GruntConfig instance");
         deepEqual(configMerged.items, {
             copy  : {
                 dev  : {foo: "baz"},

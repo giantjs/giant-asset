@@ -1,5 +1,5 @@
-/*global giant */
-$oop.postpone(giant, 'GruntTask', function () {
+/*global $asset */
+$oop.postpone($asset, 'GruntTask', function () {
     "use strict";
 
     var base = $oop.Base,
@@ -9,10 +9,10 @@ $oop.postpone(giant, 'GruntTask', function () {
      * Creates a GruntTask instance.
      * GruntTask instances may also be created via conversion from String,
      * where the string is treated as the name of the task.
-     * @name giant.GruntTask.create
+     * @name $asset.GruntTask.create
      * @function
      * @param {string} taskName Name of the task.
-     * @returns {giant.GruntTask}
+     * @returns {$asset.GruntTask}
      * @see String#toGruntTask
      */
 
@@ -24,8 +24,8 @@ $oop.postpone(giant, 'GruntTask', function () {
      * @see http://gruntjs.com/creating-tasks#basic-tasks
      * @see http://gruntjs.com/creating-tasks#custom-tasks
      */
-    giant.GruntTask = self
-        .addMethods(/** @lends giant.GruntTask# */{
+    $asset.GruntTask = self
+        .addMethods(/** @lends $asset.GruntTask# */{
             /**
              * @param {string} taskName
              * @ignore
@@ -49,10 +49,10 @@ $oop.postpone(giant, 'GruntTask', function () {
             /**
              * Applies task by registering it via the grunt API.
              * @param {string} [description]
-             * @returns {giant.GruntTask}
+             * @returns {$asset.GruntTask}
              */
             applyTask: function (description) {
-                giant.GruntProxy.create()
+                $asset.GruntProxy.create()
                     .registerTask(this.taskName, description, this.taskHandler);
                 return this;
             },
@@ -60,7 +60,7 @@ $oop.postpone(giant, 'GruntTask', function () {
             /**
              * Sets task handler. Overwrites previously set handler.
              * @param {function} taskHandler Function that implements the task.
-             * @returns {giant.GruntTask}
+             * @returns {$asset.GruntTask}
              */
             setTaskHandler: function (taskHandler) {
                 $assertion.isFunction(taskHandler, "Invalid task handler");
@@ -70,8 +70,8 @@ $oop.postpone(giant, 'GruntTask', function () {
 
             /**
              * Adds current task to a collection of tasks.
-             * @param {giant.MultiTaskCollection} taskCollection Collection to add the task to.
-             * @returns {giant.GruntTask}
+             * @param {$asset.MultiTaskCollection} taskCollection Collection to add the task to.
+             * @returns {$asset.GruntTask}
              */
             addToCollection: function (taskCollection) {
                 $assertion.isGruntTaskCollection(taskCollection, "Invalid grunt task collection");
@@ -87,10 +87,10 @@ $oop.postpone(giant, 'GruntTask', function () {
     $oop.extendBuiltIn(String.prototype, /** @lends String# */{
         /**
          * Converts string to GruntTask, treating the string as task name.
-         * @returns {giant.GruntTask}
+         * @returns {$asset.GruntTask}
          */
         toGruntTask: function () {
-            return giant.GruntTask.create(this.valueOf());
+            return $asset.GruntTask.create(this.valueOf());
         }
     });
 }());

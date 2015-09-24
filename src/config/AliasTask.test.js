@@ -1,29 +1,29 @@
-/*global giant */
+/*global $asset */
 (function () {
     "use strict";
 
     module("AliasTask", {
         setup: function () {
-            giant.AliasTask.clearInstanceRegistry();
+            $asset.AliasTask.clearInstanceRegistry();
         },
         teardown: function () {
-            giant.AliasTask.clearInstanceRegistry();
+            $asset.AliasTask.clearInstanceRegistry();
         }
     });
 
     test("Instantiation", function () {
-        var task = giant.AliasTask.create('foo');
+        var task = $asset.AliasTask.create('foo');
 
         ok(task.subTasks instanceof Array, "should initialize subTasks property as array");
         equal(task.subTasks.length, 0, "should set subTasks' length to zero");
 
-        strictEqual(giant.AliasTask.create('foo'), task, "should be memoized");
+        strictEqual($asset.AliasTask.create('foo'), task, "should be memoized");
     });
 
     test("Conversion from string", function () {
         var task = 'foo'.toAliasTask('bar');
 
-        ok(task.isA(giant.AliasTask), "should return AliasTask instance");
+        ok(task.isA($asset.AliasTask), "should return AliasTask instance");
         equal(task.taskName, 'foo', "should set task name");
         deepEqual(task.subTasks, ['bar'], "should set sub-task names");
     });
@@ -31,10 +31,10 @@
     test("Task registration", function () {
         expect(4);
 
-        var task = giant.AliasTask.create('foo')
+        var task = $asset.AliasTask.create('foo')
             .addSubTasks('hello', 'world');
 
-        giant.GruntProxy.addMocks({
+        $asset.GruntProxy.addMocks({
             registerTask: function (name, description, taskList) {
                 equal(name, 'foo', "should specify task name");
                 equal(description, 'bar', "should pass description");
@@ -44,7 +44,7 @@
 
         strictEqual(task.applyTask('bar'), task, "should be chainable");
 
-        giant.GruntProxy.removeMocks();
+        $asset.GruntProxy.removeMocks();
     });
 
     test("Sub-task addition", function () {

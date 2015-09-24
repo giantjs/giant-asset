@@ -1,4 +1,4 @@
-/*global giant */
+/*global $asset */
 (function () {
     "use strict";
 
@@ -6,14 +6,14 @@
 
     test("Instantiation", function () {
         throws(function () {
-            giant.Module.create();
+            $asset.Module.create();
         }, "should raise exception on absent arguments");
 
         throws(function () {
-            giant.Module.create('foo', 'bar');
+            $asset.Module.create('foo', 'bar');
         }, "should raise exception on invalid arguments");
 
-        var module = giant.Module.create('foo', {
+        var module = $asset.Module.create('foo', {
             classPath: 'foo["bar"].baz',
             assets   : {
                 js: ['hello.js', 'world.js']
@@ -37,7 +37,7 @@
             }
         });
 
-        ok(module.isA(giant.Module), "should return Module instance");
+        ok(module.isA($asset.Module), "should return Module instance");
         equal(module.moduleName, 'foo', "should set module name");
     });
 
@@ -50,7 +50,7 @@
             }),
             scripts = module.getAssets('js');
 
-        ok(scripts.isA(giant.AssetCollection), "should return AssetCollection instance");
+        ok(scripts.isA($asset.AssetCollection), "should return AssetCollection instance");
         deepEqual(
             scripts,
             ['hello.js', 'world.js'].toAssetCollection('js'),
@@ -120,7 +120,7 @@
         }, "should raise exception on invalid asset type argument");
 
         result = module.toAsset('js');
-        ok(result.isA(giant.Asset), "should return Asset instance");
+        ok(result.isA($asset.Asset), "should return Asset instance");
         equal(result.assetName, 'foo.js', "should set asset name");
         equal(result.assetType, 'js', "should set asset type");
     });

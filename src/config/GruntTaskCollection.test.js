@@ -1,4 +1,4 @@
-/*global giant */
+/*global $asset */
 (function () {
     "use strict";
 
@@ -7,7 +7,7 @@
     test("Conversion from Array", function () {
         var tasks = [1, 2, 3].toGruntTaskCollection();
 
-        ok(tasks.isA(giant.GruntTaskCollection), "should return GruntTaskCollection instance");
+        ok(tasks.isA($asset.GruntTaskCollection), "should return GruntTaskCollection instance");
         deepEqual(
             tasks.items,
             [1, 2, 3],
@@ -18,7 +18,7 @@
         var hash = [1, 2, 3].toHash(),
             tasks = hash.toGruntTaskCollection();
 
-        ok(tasks.isA(giant.GruntTaskCollection), "should return GruntTaskCollection instance");
+        ok(tasks.isA($asset.GruntTaskCollection), "should return GruntTaskCollection instance");
         deepEqual(
             tasks.items,
             [1, 2, 3],

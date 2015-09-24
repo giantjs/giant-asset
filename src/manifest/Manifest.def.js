@@ -1,5 +1,5 @@
-/*global giant */
-$oop.postpone(giant, 'Manifest', function () {
+/*global $asset */
+$oop.postpone($asset, 'Manifest', function () {
     "use strict";
 
     var base = $oop.Base,
@@ -9,10 +9,10 @@ $oop.postpone(giant, 'Manifest', function () {
     /**
      * Creates a Manifest instance.
      * See the sample manifest file included in the repo. (/manifest/manifest-sample.json)
-     * @name giant.Manifest.create
+     * @name $asset.Manifest.create
      * @function
      * @param {object} manifestNode Object that holds the manifest in a pre-defined format.
-     * @returns {giant.Manifest}
+     * @returns {$asset.Manifest}
      */
 
     /**
@@ -21,8 +21,8 @@ $oop.postpone(giant, 'Manifest', function () {
      * @class
      * @extends $oop.Base
      */
-    giant.Manifest = self
-        .addMethods(/** @lends giant.Manifest# */{
+    $asset.Manifest = self
+        .addMethods(/** @lends $asset.Manifest# */{
             /**
              * @param {object} manifestNode
              * @ignore
@@ -37,14 +37,14 @@ $oop.postpone(giant, 'Manifest', function () {
                  */
                 this.modules = $data.Collection.create(manifestNode)
                     .mapValues(function (moduleNode, moduleName) {
-                        return giant.Module.create(moduleName, moduleNode);
+                        return $asset.Module.create(moduleName, moduleNode);
                     });
             },
 
             /**
              * Fetches the specified Module instance from the manifest.
              * @param {string} moduleName Name of module to be retrieved.
-             * @returns {giant.Module}
+             * @returns {$asset.Module}
              */
             getModule: function (moduleName) {
                 $assertion.isString(moduleName, "Invalid module name");
@@ -56,7 +56,7 @@ $oop.postpone(giant, 'Manifest', function () {
              * Only those modules will be included in the result that have such assets.
              * Generally used to generate production asset list.
              * @param {string} assetType Type of assets to be retrieved.
-             * @returns {giant.AssetCollection}
+             * @returns {$asset.AssetCollection}
              */
             getModulesAsAssets: function (assetType) {
                 return this.modules
@@ -69,7 +69,7 @@ $oop.postpone(giant, 'Manifest', function () {
              * Retrieves all assets of the specified asset type for the specified module.
              * @param {string} moduleName Name of module to retrieve assets from.
              * @param {string} assetType Type of assets to be retrieved.
-             * @returns {giant.AssetCollection}
+             * @returns {$asset.AssetCollection}
              */
             getAssetsForModule: function (moduleName, assetType) {
                 var module = this.getModule(moduleName);
@@ -81,7 +81,7 @@ $oop.postpone(giant, 'Manifest', function () {
             /**
              * Retrieves assets from all modules matching the specified asset type.
              * @param {string} assetType Type of assets to be retrieved.
-             * @returns {giant.AssetCollection}
+             * @returns {$asset.AssetCollection}
              */
             getAssets: function (assetType) {
                 var result = [];
@@ -101,7 +101,7 @@ $oop.postpone(giant, 'Manifest', function () {
              * Retrieves assets from all modules matching the specified asset type,
              * with all returned paths flattened out. (So that assets may go in the same folder.)
              * @param {string} assetType
-             * @returns {giant.AssetCollection}
+             * @returns {$asset.AssetCollection}
              */
             getFlatAssets: function (assetType) {
                 return this.getAssets(assetType)
@@ -117,7 +117,7 @@ $oop.postpone(giant, 'Manifest', function () {
              * containing only the specified modules.
              * @example
              * manifest.filterByModuleNames('third-party', 'common', 'login')
-             * @returns {giant.Manifest}
+             * @returns {$asset.Manifest}
              */
             filterByModuleNames: function () {
                 var filteredModules = this.modules

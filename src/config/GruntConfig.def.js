@@ -1,5 +1,5 @@
-/*global giant */
-$oop.postpone(giant, 'GruntConfig', function () {
+/*global $asset */
+$oop.postpone($asset, 'GruntConfig', function () {
     "use strict";
 
     var base = $data.Tree,
@@ -8,10 +8,10 @@ $oop.postpone(giant, 'GruntConfig', function () {
 
     /**
      * Creates a GruntConfig instance.
-     * @name giant.GruntConfig.create
+     * @name $asset.GruntConfig.create
      * @function
      * @param {object} [items]
-     * @returns {giant.GruntConfig}
+     * @returns {$asset.GruntConfig}
      */
 
     /**
@@ -20,8 +20,8 @@ $oop.postpone(giant, 'GruntConfig', function () {
      * @class
      * @extends $data.Tree
      */
-    giant.GruntConfig = self
-        .addPrivateMethods(/** @lends giant.GruntConfig# */{
+    $asset.GruntConfig = self
+        .addPrivateMethods(/** @lends $asset.GruntConfig# */{
             /**
              * Returns a dictionary of unique targets as task names associated with task names for each target.
              * @returns {$data.StringDictionary}
@@ -43,11 +43,11 @@ $oop.postpone(giant, 'GruntConfig', function () {
                     .reverse();
             }
         })
-        .addMethods(/** @lends giant.GruntConfig# */{
+        .addMethods(/** @lends $asset.GruntConfig# */{
             /**
              * Adds a (multi-)task to the config.
-             * @param {giant.MultiTask} multiTask Task to be added to config.
-             * @returns {giant.GruntConfig}
+             * @param {$asset.MultiTask} multiTask Task to be added to config.
+             * @returns {$asset.GruntConfig}
              */
             addMultiTask: function (multiTask) {
                 $assertion.isMultiTask(multiTask, "Invalid multi task");
@@ -72,10 +72,10 @@ $oop.postpone(giant, 'GruntConfig', function () {
              * When the optional `wipe` argument is set, it also removes all other tasks leaving only those
              * being applied.
              * @param {boolean} [wipe] Whether to remove tasks not in current config.
-             * @returns {giant.GruntConfig}
+             * @returns {$asset.GruntConfig}
              */
             applyConfig: function (wipe) {
-                var gruntProxy = giant.GruntProxy.create();
+                var gruntProxy = $asset.GruntProxy.create();
                 if (wipe) {
                     gruntProxy.configInit(this.items);
                 } else {
@@ -96,10 +96,10 @@ $oop.postpone(giant, 'GruntConfig', function () {
 
             /**
              * Applies config by merging current config to previously applied config(s) via the grunt API.
-             * @returns {giant.GruntConfig}
+             * @returns {$asset.GruntConfig}
              */
             mergeConfig: function () {
-                var gruntProxy = giant.GruntProxy.create();
+                var gruntProxy = $asset.GruntProxy.create();
                 gruntProxy.configMerge(this.items);
                 return this;
             },
@@ -107,7 +107,7 @@ $oop.postpone(giant, 'GruntConfig', function () {
             /**
              * Returns a typed collection with alias tasks for the specified targets (as arguments),
              * or all targets (no arguments).
-             * @returns {giant.GruntTaskCollection}
+             * @returns {$asset.GruntTaskCollection}
              */
             getAliasTasksGroupedByTarget: function () {
                 var groupedTasks = this._getAliasTaskAssociations.apply(this, arguments);
@@ -124,16 +124,16 @@ $oop.postpone(giant, 'GruntConfig', function () {
                         }
 
                         return aliasTask;
-                    }, undefined, giant.GruntTaskCollection);
+                    }, undefined, $asset.GruntTaskCollection);
             },
 
             /**
              * Merges current config with remote config on the target level.
              * In case of conflict re. task/target combinations, the current config will win.
              * (Unless a suitable conflict resolver function is passed.)
-             * @param {giant.GruntConfig} remoteConfig
+             * @param {$asset.GruntConfig} remoteConfig
              * @param {function} [conflictResolver]
-             * @returns {giant.GruntConfig}
+             * @returns {$asset.GruntConfig}
              * @see $data.Collection#mergeWith
              */
             mergeWith: function (remoteConfig, conflictResolver) {
@@ -164,16 +164,16 @@ $oop.postpone(giant, 'GruntConfig', function () {
 (function () {
     "use strict";
 
-    $assertion.addTypes(/** @lends giant */{
-        /** @param {giant.GruntConfig} expr */
+    $assertion.addTypes(/** @lends $asset */{
+        /** @param {$asset.GruntConfig} expr */
         isGruntConfig: function (expr) {
-            return giant.GruntConfig.isBaseOf(expr);
+            return $asset.GruntConfig.isBaseOf(expr);
         },
 
-        /** @param {giant.GruntConfig} expr */
+        /** @param {$asset.GruntConfig} expr */
         isGruntConfigOptional: function (expr) {
             return typeof expr === 'undefined' ||
-                   giant.GruntConfig.isBaseOf(expr);
+                   $asset.GruntConfig.isBaseOf(expr);
         }
     });
 }());

@@ -1,4 +1,4 @@
-/*global giant */
+/*global $asset */
 (function () {
     "use strict";
 
@@ -6,10 +6,10 @@
 
     test("Instantiation", function () {
         throws(function () {
-            giant.Asset.create();
+            $asset.Asset.create();
         }, "should raise exception on absent arguments");
 
-        var asset = giant.Asset.create('foo/bar', 'baz');
+        var asset = $asset.Asset.create('foo/bar', 'baz');
 
         equal(asset.assetName, 'foo/bar', "should set asset name");
         equal(asset.assetType, 'baz', "should set asset type");
@@ -17,7 +17,7 @@
 
     test("Conversion from string", function () {
         var asset = 'foo/bar'.toAsset('js');
-        ok(asset.isA(giant.Asset), "should return Asset instance");
+        ok(asset.isA($asset.Asset), "should return Asset instance");
         equal(asset.assetName, 'foo/bar', "should set asset name");
         equal(asset.assetType, 'js', "should set asset type");
     });

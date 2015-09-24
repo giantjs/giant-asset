@@ -1,5 +1,5 @@
-/*global giant */
-$oop.postpone(giant, 'ClassPathParser', function () {
+/*global $asset */
+$oop.postpone($asset, 'ClassPathParser', function () {
     "use strict";
 
     var base = $oop.Base,
@@ -10,8 +10,8 @@ $oop.postpone(giant, 'ClassPathParser', function () {
      * @class
      * @extends $oop.Base
      */
-    giant.ClassPathParser = self
-        .addConstants(/** @lends giant.ClassPathParser */{
+    $asset.ClassPathParser = self
+        .addConstants(/** @lends $asset.ClassPathParser */{
             /**
              * @type {RegExp}
              * @constant
@@ -24,7 +24,7 @@ $oop.postpone(giant, 'ClassPathParser', function () {
              */
             RE_IDENTIFIER: /^[a-z][0-9a-z_$]+$/i
         })
-        .addMethods(/** @lends giant.ClassPathParser */{
+        .addMethods(/** @lends $asset.ClassPathParser */{
             /**
              * Parses class path. The class path is a path delimited by any character that is
              * not word character, numeric, underscore, or dollar sign.
@@ -50,7 +50,7 @@ $oop.amendPostponed($data, 'Path', function () {
                 return this.asArray
                     .toCollection()
                     .mapValues(function (propertyName, index) {
-                        return !giant.ClassPathParser.RE_IDENTIFIER.test(propertyName) ?
+                        return !$asset.ClassPathParser.RE_IDENTIFIER.test(propertyName) ?
                             '["' + propertyName.replace('"', '\\"') + '"]' :
                             index > 0 ?
                                 '.' + propertyName :
@@ -71,7 +71,7 @@ $oop.amendPostponed($data, 'Path', function () {
          * @returns {$data.Path}
          */
         toPathFromClassPath: function () {
-            return giant.ClassPathParser.parseClassPath(this);
+            return $asset.ClassPathParser.parseClassPath(this);
         }
     });
 }());

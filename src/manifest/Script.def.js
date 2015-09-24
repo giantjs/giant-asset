@@ -1,8 +1,8 @@
-/*global giant */
-$oop.postpone(giant, 'Script', function () {
+/*global $asset */
+$oop.postpone($asset, 'Script', function () {
     "use strict";
 
-    var base = giant.Asset,
+    var base = $asset.Asset,
         self = base.extend();
 
     /**
@@ -10,19 +10,19 @@ $oop.postpone(giant, 'Script', function () {
      * Script assets may also be created via conversion from string.
      * @example
      * var css = 'foo.js'.toAsset('js');
-     * @name giant.Script.create
+     * @name $asset.Script.create
      * @function
      * @param {string} assetPath
-     * @returns {giant.Script}
+     * @returns {$asset.Script}
      */
 
     /**
      * The Script class represents a JavaScript asset file.
      * @class
-     * @extends giant.Asset
+     * @extends $asset.Asset
      */
-    giant.Script = self
-        .addMethods(/** @lends giant.Script# */{
+    $asset.Script = self
+        .addMethods(/** @lends $asset.Script# */{
             /**
              * @param {string} assetPath
              * @ignore
@@ -41,11 +41,11 @@ $oop.postpone(giant, 'Script', function () {
         });
 });
 
-$oop.amendPostponed(giant, 'Asset', function () {
+$oop.amendPostponed($asset, 'Asset', function () {
     "use strict";
 
-    giant.Asset
-        .addSurrogate(giant, 'Script', function (assetPath, assetType) {
+    $asset.Asset
+        .addSurrogate($asset, 'Script', function (assetPath, assetType) {
             return assetType === 'js';
         });
 });

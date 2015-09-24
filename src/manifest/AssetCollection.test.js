@@ -1,4 +1,4 @@
-/*global giant */
+/*global $asset */
 (function () {
     "use strict";
 
@@ -6,17 +6,17 @@
 
     test("Instantiation", function () {
         throws(function () {
-            giant.AssetCollection.create({});
+            $asset.AssetCollection.create({});
         }, "should raise exception on invalid arguments");
     });
 
     test("Conversion from Array", function () {
         var assets = ['foo/bar', 'hello/world'].toAssetCollection('baz');
 
-        ok(assets.isA(giant.AssetCollection), "should return AssetCollection instance");
+        ok(assets.isA($asset.AssetCollection), "should return AssetCollection instance");
         deepEqual(
             assets,
-            giant.AssetCollection.create(['foo/bar'.toAsset('baz'), 'hello/world'.toAsset('baz')]),
+            $asset.AssetCollection.create(['foo/bar'.toAsset('baz'), 'hello/world'.toAsset('baz')]),
             "should initialize instance identically as through constructor");
     });
 
@@ -27,10 +27,10 @@
             ].toHash(),
             assets = hash.toAssetCollection();
 
-        ok(assets.isA(giant.AssetCollection), "should return AssetCollection instance");
+        ok(assets.isA($asset.AssetCollection), "should return AssetCollection instance");
         deepEqual(
             assets,
-            giant.AssetCollection.create(['foo/bar'.toAsset('baz'), 'hello/world'.toAsset('baz')]),
+            $asset.AssetCollection.create(['foo/bar'.toAsset('baz'), 'hello/world'.toAsset('baz')]),
             "should initialize instance identically as through constructor");
     });
 

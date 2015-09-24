@@ -1,5 +1,5 @@
-/*global giant */
-$oop.postpone(giant, 'GruntProxy', function () {
+/*global $asset */
+$oop.postpone($asset, 'GruntProxy', function () {
     "use strict";
 
     var base = $oop.Base,
@@ -7,9 +7,9 @@ $oop.postpone(giant, 'GruntProxy', function () {
 
     /**
      * Creates or retrieves a GruntProxy instance.
-     * @name giant.GruntProxy.create
+     * @name $asset.GruntProxy.create
      * @function
-     * @returns {giant.GruntProxy}
+     * @returns {$asset.GruntProxy}
      */
 
     /**
@@ -17,11 +17,11 @@ $oop.postpone(giant, 'GruntProxy', function () {
      * @class
      * @extends $oop.Base
      */
-    giant.GruntProxy = self
+    $asset.GruntProxy = self
         .setInstanceMapper(function () {
             return 'singleton';
         })
-        .addMethods(/** @lends giant.GruntProxy# */{
+        .addMethods(/** @lends $asset.GruntProxy# */{
             /** @ignore */
             init: function () {
                 /**
@@ -33,9 +33,9 @@ $oop.postpone(giant, 'GruntProxy', function () {
 
             /**
              * Sets grunt object. This must be called at least once in order to use
-             * the config management part of giant.
+             * the config management part of $asset.
              * @param {object} grunt
-             * @returns {giant.GruntProxy}
+             * @returns {$asset.GruntProxy}
              */
             setGruntObject: function (grunt) {
                 $assertion.isObject(grunt, "Invalid grunt object");

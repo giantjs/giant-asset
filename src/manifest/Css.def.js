@@ -1,8 +1,8 @@
-/*global giant */
-$oop.postpone(giant, 'Css', function () {
+/*global $asset */
+$oop.postpone($asset, 'Css', function () {
     "use strict";
 
-    var base = giant.Asset,
+    var base = $asset.Asset,
         self = base.extend();
 
     /**
@@ -10,19 +10,19 @@ $oop.postpone(giant, 'Css', function () {
      * Css assets may also be created via conversion from string.
      * @example
      * var css = 'foo.css'.toAsset('css');
-     * @name giant.Css.create
+     * @name $asset.Css.create
      * @function
      * @param {string} assetPath
-     * @returns {giant.Css}
+     * @returns {$asset.Css}
      */
 
     /**
      * The Css class represents a style sheet asset file.
      * @class
-     * @extends giant.Asset
+     * @extends $asset.Asset
      */
-    giant.Css = self
-        .addMethods(/** @lends giant.Css# */{
+    $asset.Css = self
+        .addMethods(/** @lends $asset.Css# */{
             /**
              * @param {string} assetPath
              * @ignore
@@ -41,11 +41,11 @@ $oop.postpone(giant, 'Css', function () {
         });
 });
 
-$oop.amendPostponed(giant, 'Asset', function () {
+$oop.amendPostponed($asset, 'Asset', function () {
     "use strict";
 
-    giant.Asset
-        .addSurrogate(giant, 'Css', function (assetPath, assetType) {
+    $asset.Asset
+        .addSurrogate($asset, 'Css', function (assetPath, assetType) {
             return assetType === 'css';
         });
 });

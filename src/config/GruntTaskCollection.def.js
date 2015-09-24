@@ -1,15 +1,15 @@
-/*global giant */
-$oop.postpone(giant, 'GruntTaskCollection', function () {
+/*global $asset */
+$oop.postpone($asset, 'GruntTaskCollection', function () {
     "use strict";
 
     /**
      * Creates a GruntTaskCollection instance.
      * GruntTaskCollection instances may also be created via conversion from Array and Hash.
      * (In fact those are favorable to .create().)
-     * @name giant.GruntTaskCollection.create
+     * @name $asset.GruntTaskCollection.create
      * @function
      * @param {Object|Array} items
-     * @returns {giant.GruntTaskCollection}
+     * @returns {$asset.GruntTaskCollection}
      * @see Array#toGruntTaskCollection
      * @see $data.Hash#toGruntTaskCollection
      */
@@ -19,9 +19,9 @@ $oop.postpone(giant, 'GruntTaskCollection', function () {
      * GruntTask instances.
      * @class
      * @extends $data.Collection
-     * @extends giant.GruntTask
+     * @extends $asset.GruntTask
      */
-    giant.GruntTaskCollection = $data.Collection.of(giant.GruntTask);
+    $asset.GruntTaskCollection = $data.Collection.of($asset.GruntTask);
 });
 
 $oop.amendPostponed($data, 'Hash', function () {
@@ -30,10 +30,10 @@ $oop.amendPostponed($data, 'Hash', function () {
     $data.Hash.addMethods(/** @lends $data.Hash# */{
         /**
          * Converts Hash to GruntTaskCollection. Hash items must be GruntTask instances.
-         * @returns {giant.GruntTaskCollection}
+         * @returns {$asset.GruntTaskCollection}
          */
         toGruntTaskCollection: function () {
-            return giant.GruntTaskCollection.create(this.items);
+            return $asset.GruntTaskCollection.create(this.items);
         }
     });
 });
@@ -44,23 +44,23 @@ $oop.amendPostponed($data, 'Hash', function () {
     $oop.extendBuiltIn(Array.prototype, /** @lends Array# */{
         /**
          * Converts Array to GruntTaskCollection. Array items must be GruntTask instances.
-         * @returns {giant.GruntTaskCollection}
+         * @returns {$asset.GruntTaskCollection}
          */
         toGruntTaskCollection: function () {
-            return giant.GruntTaskCollection.create(this);
+            return $asset.GruntTaskCollection.create(this);
         }
     });
 
-    $assertion.addTypes(/** @lends giant */{
-        /** @param {giant.GruntTaskCollection} expr */
+    $assertion.addTypes(/** @lends $asset */{
+        /** @param {$asset.GruntTaskCollection} expr */
         isGruntTaskCollection: function (expr) {
-            return giant.GruntTaskCollection.isBaseOf(expr);
+            return $asset.GruntTaskCollection.isBaseOf(expr);
         },
 
-        /** @param {giant.GruntTaskCollection} expr */
+        /** @param {$asset.GruntTaskCollection} expr */
         isGruntTaskCollectionOptional: function (expr) {
             return typeof expr === 'undefined' ||
-                giant.GruntTaskCollection.isBaseOf(expr);
+                $asset.GruntTaskCollection.isBaseOf(expr);
         }
     });
 }());

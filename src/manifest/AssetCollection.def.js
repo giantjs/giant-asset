@@ -1,15 +1,15 @@
-/*global giant */
-$oop.postpone(giant, 'AssetCollection', function () {
+/*global $asset */
+$oop.postpone($asset, 'AssetCollection', function () {
     "use strict";
 
-    var base = $data.Collection.of(giant.Asset),
+    var base = $data.Collection.of($asset.Asset),
         self = base.extend();
 
     /**
-     * @name giant.AssetCollection.create
+     * @name $asset.AssetCollection.create
      * @function
      * @param {Asset[]} items
-     * @returns {giant.AssetCollection}
+     * @returns {$asset.AssetCollection}
      */
 
     /**
@@ -17,8 +17,8 @@ $oop.postpone(giant, 'AssetCollection', function () {
      * @class
      * @extends $oop.Base
      */
-    giant.AssetCollection = self
-        .addMethods(/** @lends giant.AssetCollection# */{
+    $asset.AssetCollection = self
+        .addMethods(/** @lends $asset.AssetCollection# */{
             /**
              * @param {Asset[]} items
              * @ignore
@@ -34,7 +34,7 @@ $oop.postpone(giant, 'AssetCollection', function () {
              */
             getAssetNames: function () {
                 return this
-                    .mapValues(function (/**giant.Asset*/asset) {
+                    .mapValues(function (/**$asset.Asset*/asset) {
                         return asset.assetName;
                     })
                     .items;
@@ -49,13 +49,13 @@ $oop.postpone(giant, 'AssetCollection', function () {
 
                 // assets identified by their (unique) asset names
                     assetNameByAsset = this
-                        .mapKeys(function (/**giant.Asset*/asset) {
+                        .mapKeys(function (/**$asset.Asset*/asset) {
                             return asset.assetName;
                         }),
 
                 // asset name lookup by asset file names (with extension)
                     assetFileNameToAssetName = assetNameByAsset
-                        .mapValues(function (/**giant.Asset*/asset) {
+                        .mapValues(function (/**$asset.Asset*/asset) {
                             return asset.getAssetFileName();
                         })
                         .toStringDictionary()
@@ -63,7 +63,7 @@ $oop.postpone(giant, 'AssetCollection', function () {
 
                 // asset data lookup by (unique) asset names
                     assetNameToAssetNameParts = assetNameByAsset
-                        .mapValues(function (/**giant.Asset*/asset, assetName) {
+                        .mapValues(function (/**$asset.Asset*/asset, assetName) {
                             return {
                                 name: assetName,
                                 base: asset.getAssetBaseName(),
@@ -95,7 +95,7 @@ $oop.postpone(giant, 'AssetCollection', function () {
             /**
              * Serializes all assets in the collection.
              * @returns {string}
-             * @see giant.Asset#toString
+             * @see $asset.Asset#toString
              */
             toString: function () {
                 return this.items.join('\n');
@@ -110,10 +110,10 @@ $oop.amendPostponed($data, 'Hash', function () {
         .addMethods(/** @lends $data.Hash# */{
             /**
              * Converts `Hash` instance with array items to `AssetCollection` instance.
-             * @returns {giant.AssetCollection}
+             * @returns {$asset.AssetCollection}
              */
             toAssetCollection: function () {
-                return giant.AssetCollection.create(this.items);
+                return $asset.AssetCollection.create(this.items);
             }
         });
 });
@@ -124,7 +124,7 @@ $oop.amendPostponed($data, 'Hash', function () {
     $oop.extendBuiltIn(Array.prototype, /** @lends Array# */{
         /**
          * @param {string} assetType
-         * @returns {giant.AssetCollection}
+         * @returns {$asset.AssetCollection}
          */
         toAssetCollection: function (assetType) {
             return this.toCollection()

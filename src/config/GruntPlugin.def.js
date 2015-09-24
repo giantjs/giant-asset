@@ -1,5 +1,5 @@
-/*global giant */
-$oop.postpone(giant, 'GruntPlugin', function () {
+/*global $asset */
+$oop.postpone($asset, 'GruntPlugin', function () {
     "use strict";
 
     var base = $oop.Base,
@@ -10,11 +10,11 @@ $oop.postpone(giant, 'GruntPlugin', function () {
      * GruntPlugin instances may also be created via conversion from String,
      * treating the string as the name of the package.
      * @example
-     * giant.GruntPlugin.create('grunt-contrib-copy')
-     * @name giant.GruntPlugin.create
+     * $asset.GruntPlugin.create('grunt-contrib-copy')
+     * @name $asset.GruntPlugin.create
      * @function
      * @param {string} packageName Name of the NPM package associated with the grunt plugin.
-     * @returns {giant.GruntPlugin}
+     * @returns {$asset.GruntPlugin}
      * @see String#toGruntPlugin
      */
 
@@ -23,8 +23,8 @@ $oop.postpone(giant, 'GruntPlugin', function () {
      * @class
      * @extends $oop.Base
      */
-    giant.GruntPlugin = self
-        .addMethods(/** @lends giant.GruntPlugin# */{
+    $asset.GruntPlugin = self
+        .addMethods(/** @lends $asset.GruntPlugin# */{
             /**
              * @param {string} packageName
              * @ignore
@@ -41,10 +41,10 @@ $oop.postpone(giant, 'GruntPlugin', function () {
 
             /**
              * Loads the grunt plugin via the grunt API.
-             * @returns {giant.GruntPlugin}
+             * @returns {$asset.GruntPlugin}
              */
             loadPlugin: function () {
-                giant.GruntProxy.create().loadNpmTasks(this.packageName);
+                $asset.GruntProxy.create().loadNpmTasks(this.packageName);
                 return this;
             }
         });
@@ -56,10 +56,10 @@ $oop.postpone(giant, 'GruntPlugin', function () {
     $oop.extendBuiltIn(String.prototype, /** @lends String# */{
         /**
          * Converts string to GruntPlugin, treating the string as the name of an NPM package.
-         * @returns {giant.AliasTask}
+         * @returns {$asset.AliasTask}
          */
         toGruntPlugin: function () {
-            return giant.GruntPlugin.create(this.valueOf());
+            return $asset.GruntPlugin.create(this.valueOf());
         }
     });
 }());

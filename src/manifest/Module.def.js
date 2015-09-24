@@ -1,5 +1,5 @@
-/*global giant */
-$oop.postpone(giant, 'Module', function () {
+/*global $asset */
+$oop.postpone($asset, 'Module', function () {
     "use strict";
 
     var base = $oop.Base,
@@ -9,11 +9,11 @@ $oop.postpone(giant, 'Module', function () {
      * Creates a Module instance.
      * Module instances may also be created via conversion from string. The string in this case is
      * interpreted as the name of the module.
-     * @name giant.Module.create
+     * @name $asset.Module.create
      * @function
      * @param {string} moduleName
      * @param {object} moduleNode
-     * @returns {giant.Module}
+     * @returns {$asset.Module}
      * @see String#toModule
      */
 
@@ -25,8 +25,8 @@ $oop.postpone(giant, 'Module', function () {
      * @class
      * @extends $oop.Base
      */
-    giant.Module = self
-        .addMethods(/** @lends giant.Module# */{
+    $asset.Module = self
+        .addMethods(/** @lends $asset.Module# */{
             /**
              * @param {string} moduleName
              * @param {object} moduleNode
@@ -72,7 +72,7 @@ $oop.postpone(giant, 'Module', function () {
             /**
              * Fetches all assets in the module for the specified asset type.
              * @param {string} assetType
-             * @returns {giant.AssetCollection}
+             * @returns {$asset.AssetCollection}
              */
             getAssets: function (assetType) {
                 $assertion.isString(assetType, "Invalid asset type");
@@ -121,7 +121,7 @@ $oop.postpone(giant, 'Module', function () {
              * @example
              * 'foo'.toModule({hello: 'world'}).toAsset() // 'foo.js'.toAsset('js')
              * @param {string} assetType
-             * @returns {giant.Asset}
+             * @returns {$asset.Asset}
              */
             toAsset: function (assetType) {
                 $assertion
@@ -138,10 +138,10 @@ $oop.postpone(giant, 'Module', function () {
     $oop.extendBuiltIn(String.prototype, /** @lends String# */{
         /**
          * @param {object} [moduleNode]
-         * @returns {giant.Module}
+         * @returns {$asset.Module}
          */
         toModule: function (moduleNode) {
-            return giant.Module.create(this.valueOf(), moduleNode);
+            return $asset.Module.create(this.valueOf(), moduleNode);
         }
     });
 }());

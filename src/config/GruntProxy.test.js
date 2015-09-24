@@ -1,27 +1,27 @@
-/*global giant */
+/*global $asset */
 (function () {
     "use strict";
 
     module("GruntProxy", {
         setup   : function () {
-            giant.GruntProxy.clearInstanceRegistry();
+            $asset.GruntProxy.clearInstanceRegistry();
         },
         teardown: function () {
-            giant.GruntProxy.clearInstanceRegistry();
+            $asset.GruntProxy.clearInstanceRegistry();
         }
     });
 
     test("Instantiation", function () {
-        var gruntProxy = giant.GruntProxy.create();
+        var gruntProxy = $asset.GruntProxy.create();
 
         ok(gruntProxy.hasOwnProperty('grunt'), "should add grunt property");
         equal(typeof gruntProxy.grunt, 'undefined', "should set grunt property to undefined");
 
-        strictEqual(giant.GruntProxy.create(), gruntProxy, "should be singleton");
+        strictEqual($asset.GruntProxy.create(), gruntProxy, "should be singleton");
     });
 
     test("Grunt object setter", function () {
-        var gruntProxy = giant.GruntProxy.create(),
+        var gruntProxy = $asset.GruntProxy.create(),
             gruntObject = {};
 
         throws(function () {

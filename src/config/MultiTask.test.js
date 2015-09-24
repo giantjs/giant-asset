@@ -1,4 +1,4 @@
-/*global giant */
+/*global $asset */
 (function () {
     "use strict";
 
@@ -6,7 +6,7 @@
 
     test("Instantiation with object", function () {
         throws(function () {
-            giant.MultiTask.create('foo', 'bar');
+            $asset.MultiTask.create('foo', 'bar');
         }, "should raise exception on invalid arguments");
 
         var configNode = {
@@ -15,15 +15,15 @@
             },
             task;
 
-        task = giant.MultiTask.create('foo');
+        task = $asset.MultiTask.create('foo');
         deepEqual(task.configNode, {}, "should set configNode property to empty object");
 
-        task = giant.MultiTask.create('foo', configNode);
+        task = $asset.MultiTask.create('foo', configNode);
         strictEqual(task.configNode, configNode, "should set configNode property to specified object");
     });
 
     test("Instantiation with function", function () {
-        var task = giant.MultiTask.create('foo', genConfigNode);
+        var task = $asset.MultiTask.create('foo', genConfigNode);
 
         function genConfigNode() {
         }
@@ -39,7 +39,7 @@
         ok(multiTask.hasOwnProperty('gruntPlugin'), "should add gruntPlugin property");
         equal(typeof multiTask.gruntPlugin, 'undefined', "should initialize gruntPlugin property to undefined");
 
-        ok(multiTask.isA(giant.MultiTask), "should return MultiTask instance");
+        ok(multiTask.isA($asset.MultiTask), "should return MultiTask instance");
         equal(multiTask.taskName, 'foo', "should set task name");
         deepEqual(multiTask.configNode, {
             foo: {}
@@ -58,7 +58,7 @@
         var task = 'foo'.toMultiTask();
 
         strictEqual(task.setPackageName('grunt-foo'), task, "should be chainable");
-        ok(task.gruntPlugin.isA(giant.GruntPlugin), "should set a GruntPlugin instance");
+        ok(task.gruntPlugin.isA($asset.GruntPlugin), "should set a GruntPlugin instance");
         equal(task.gruntPlugin.packageName, 'grunt-foo', "should set package name for plugin");
     });
 
@@ -68,7 +68,7 @@
         var task = 'foo'.toMultiTask()
             .setPackageName('grunt-foo');
 
-        giant.GruntProxy.addMocks({
+        $asset.GruntProxy.addMocks({
             loadNpmTasks: function (taskName) {
                 equal(taskName, 'grunt-foo', "should load plugin");
             }
@@ -76,7 +76,7 @@
 
         strictEqual(task.applyTask(), task, "should be chainable");
 
-        giant.GruntProxy.removeMocks();
+        $asset.GruntProxy.removeMocks();
     });
 
     test("Applying path-based task", function () {
@@ -85,7 +85,7 @@
         var task = 'foo'.toMultiTask()
             .setTaskPath('foo/bar/baz');
 
-        giant.GruntProxy.addMocks({
+        $asset.GruntProxy.addMocks({
             loadTasks: function (taskPath) {
                 equal(taskPath, 'foo/bar/baz', "should load task from path");
             }
@@ -93,7 +93,7 @@
 
         strictEqual(task.applyTask('foo/bar/baz'), task, "should be chainable");
 
-        giant.GruntProxy.removeMocks();
+        $asset.GruntProxy.removeMocks();
     });
 
     test("Applying handler-based task", function () {
@@ -103,7 +103,7 @@
             .setTaskHandler(function () {
             });
 
-        giant.GruntProxy.addMocks({
+        $asset.GruntProxy.addMocks({
             registerMultiTask: function (taskName, description, handler) {
                 equal(taskName, 'foo', "should register multi task");
                 equal(description, 'bar', "should pass description to registration");
@@ -113,7 +113,7 @@
 
         strictEqual(task.applyTask('bar'), task, "should be chainable");
 
-        giant.GruntProxy.removeMocks();
+        $asset.GruntProxy.removeMocks();
     });
 
     test("Config node getter with object", function () {
@@ -168,7 +168,7 @@
                     bar: 'baz'
                 }
             }),
-            config = giant.GruntConfig.create();
+            config = $asset.GruntConfig.create();
 
         throws(function () {
             task.addToConfig();
@@ -191,7 +191,7 @@
         expect(5);
 
         var task = 'foo'.toMultiTask(),
-            collection = giant.MultiTaskCollection.create();
+            collection = $asset.MultiTaskCollection.create();
 
         throws(function () {
             task.addToCollection();

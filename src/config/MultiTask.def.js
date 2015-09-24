@@ -1,8 +1,8 @@
-/*global giant */
-$oop.postpone(giant, 'MultiTask', function () {
+/*global $asset */
+$oop.postpone($asset, 'MultiTask', function () {
     "use strict";
 
-    var base = giant.GruntTask,
+    var base = $asset.GruntTask,
         self = base.extend(),
         validators = $assertion.validators;
 
@@ -10,22 +10,22 @@ $oop.postpone(giant, 'MultiTask', function () {
      * Creates a MultiTask instance.
      * MultiTask instances may also be created via conversion from String,
      * where the string is treated as the name of the task.
-     * @name giant.MultiTask.create
+     * @name $asset.MultiTask.create
      * @function
      * @param {string} taskName Name of multi task.
      * @param {object|function} [configNode]
-     * @returns {giant.MultiTask}
+     * @returns {$asset.MultiTask}
      */
 
     /**
      * The MultiTask implements a 'multi' grunt task.
      * Multi grunt tasks are loaded via plugins and are configurable.
      * @class
-     * @extends giant.GruntTask
+     * @extends $asset.GruntTask
      * @see http://gruntjs.com/creating-tasks#multi-tasks
      */
-    giant.MultiTask = self
-        .addPrivateMethods(/** @lends giant.MultiTask# */{
+    $asset.MultiTask = self
+        .addPrivateMethods(/** @lends $asset.MultiTask# */{
             /**
              * @returns {object}
              * @private
@@ -36,7 +36,7 @@ $oop.postpone(giant, 'MultiTask', function () {
                     this.configNode;
             }
         })
-        .addMethods(/** @lends giant.MultiTask# */{
+        .addMethods(/** @lends $asset.MultiTask# */{
             /**
              * @param {string} taskName
              * @param {object|function} [configNode]
@@ -51,7 +51,7 @@ $oop.postpone(giant, 'MultiTask', function () {
 
                 /**
                  * Grunt plugin associated with multi task.
-                 * @type {giant.GruntPlugin}
+                 * @type {$asset.GruntPlugin}
                  */
                 this.gruntPlugin = undefined;
 
@@ -71,7 +71,7 @@ $oop.postpone(giant, 'MultiTask', function () {
             /**
              * Applies task by either loading the plugin or registering it with the provided handler.
              * @param {string} [description]
-             * @returns {giant.MultiTask}
+             * @returns {$asset.MultiTask}
              */
             applyTask: function (description) {
                 var gruntPlugin = this.gruntPlugin,
@@ -84,10 +84,10 @@ $oop.postpone(giant, 'MultiTask', function () {
                 if (gruntPlugin) {
                     gruntPlugin.loadPlugin();
                 } else if (taskPath) {
-                    giant.GruntProxy.create()
+                    $asset.GruntProxy.create()
                         .loadTasks(taskPath);
                 } else {
-                    giant.GruntProxy.create()
+                    $asset.GruntProxy.create()
                         .registerMultiTask(this.taskName, description, this.taskHandler);
                 }
 
@@ -97,7 +97,7 @@ $oop.postpone(giant, 'MultiTask', function () {
             /**
              * Sets NPM package name for the plugin associated with the current task.
              * @param {string} packageName Name of NPM package for the plugin.
-             * @returns {giant.MultiTask}
+             * @returns {$asset.MultiTask}
              */
             setPackageName: function (packageName) {
                 $assertion.isString(packageName, "Invalid packahe name");
@@ -109,7 +109,7 @@ $oop.postpone(giant, 'MultiTask', function () {
              * Sets task path, so that it can be loaded from an external javascript file.
              * Overwrites previously set task path.
              * @param {string} taskPath
-             * @returns {giant.MultiTask}
+             * @returns {$asset.MultiTask}
              */
             setTaskPath: function (taskPath) {
                 $assertion.isString(taskPath, "Invalid task path");
@@ -140,8 +140,8 @@ $oop.postpone(giant, 'MultiTask', function () {
 
             /**
              * Adds task to the specified GruntConfig instance.
-             * @param {giant.GruntConfig} config Config to add the task to.
-             * @returns {giant.MultiTask}
+             * @param {$asset.GruntConfig} config Config to add the task to.
+             * @returns {$asset.MultiTask}
              */
             addToConfig: function (config) {
                 $assertion.isGruntConfig(config, "Invalid grunt config");
@@ -151,8 +151,8 @@ $oop.postpone(giant, 'MultiTask', function () {
 
             /**
              * Adds current multi task to a collection of multi tasks.
-             * @param {giant.MultiTaskCollection} multiTaskCollection Collection to add the task to.
-             * @returns {giant.MultiTask}
+             * @param {$asset.MultiTaskCollection} multiTaskCollection Collection to add the task to.
+             * @returns {$asset.MultiTask}
              */
             addToCollection: function (multiTaskCollection) {
                 $assertion.isMultiTaskCollection(multiTaskCollection, "Invalid multi task collection");
@@ -169,23 +169,23 @@ $oop.postpone(giant, 'MultiTask', function () {
         /**
          * Converts string to MultiTask, treating the string as the plugin name.
          * @param {object} [configNode] Optional task config.
-         * @returns {giant.MultiTask}
+         * @returns {$asset.MultiTask}
          */
         toMultiTask: function (configNode) {
-            return giant.MultiTask.create(this.valueOf(), configNode);
+            return $asset.MultiTask.create(this.valueOf(), configNode);
         }
     });
 
-    $assertion.addTypes(/** @lends giant */{
-        /** @param {giant.MultiTask} expr */
+    $assertion.addTypes(/** @lends $asset */{
+        /** @param {$asset.MultiTask} expr */
         isMultiTask: function (expr) {
-            return giant.MultiTask.isBaseOf(expr);
+            return $asset.MultiTask.isBaseOf(expr);
         },
 
-        /** @param {giant.MultiTask} expr */
+        /** @param {$asset.MultiTask} expr */
         isMultiTaskOptional: function (expr) {
             return typeof expr === 'undefined' ||
-                giant.MultiTask.isBaseOf(expr);
+                $asset.MultiTask.isBaseOf(expr);
         }
     });
 }());

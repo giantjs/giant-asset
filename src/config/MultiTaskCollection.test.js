@@ -1,4 +1,4 @@
-/*global giant */
+/*global $asset */
 (function () {
     "use strict";
 
@@ -7,7 +7,7 @@
     test("Conversion from Array", function () {
         var tasks = [1, 2, 3].toMultiTaskCollection();
 
-        ok(tasks.isA(giant.MultiTaskCollection), "should return MultiTaskCollection instance");
+        ok(tasks.isA($asset.MultiTaskCollection), "should return MultiTaskCollection instance");
         deepEqual(
             tasks.items,
             [1, 2, 3],
@@ -18,7 +18,7 @@
         var hash = [1, 2, 3].toHash(),
             tasks = hash.toMultiTaskCollection();
 
-        ok(tasks.isA(giant.MultiTaskCollection), "should return MultiTaskCollection instance");
+        ok(tasks.isA($asset.MultiTaskCollection), "should return MultiTaskCollection instance");
         deepEqual(
             tasks.items,
             [1, 2, 3],
@@ -49,7 +49,7 @@
             ].toMultiTaskCollection(),
             config = tasks.toGruntConfig();
 
-        ok(config.isA(giant.GruntConfig), "should return GruntConfig instance");
+        ok(config.isA($asset.GruntConfig), "should return GruntConfig instance");
         deepEqual(config.items, [
             {hello: "world"},
             {hi: "all"}
