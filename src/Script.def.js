@@ -1,4 +1,3 @@
-/*global $asset */
 $oop.postpone($asset, 'Script', function () {
     "use strict";
 

@@ -1,4 +1,3 @@
-/*global $asset */
 $oop.postpone($asset, 'Css', function () {
     "use strict";
 

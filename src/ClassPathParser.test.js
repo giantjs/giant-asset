@@ -1,4 +1,3 @@
-/*global $asset */
 (function () {
     "use strict";
 

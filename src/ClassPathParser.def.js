@@ -1,4 +1,3 @@
-/*global $asset */
 $oop.postpone($asset, 'ClassPathParser', function () {
     "use strict";
 
